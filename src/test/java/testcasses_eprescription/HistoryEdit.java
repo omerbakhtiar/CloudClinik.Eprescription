@@ -25,7 +25,7 @@ public class HistoryEdit {
 	
 	
 	
-	@Test(priority = 1)
+/*	@Test(priority = 1)
 	public void verifyMrNumber() throws IOException, InterruptedException {
 		String s = sr.Searching();
 		Thread.sleep(10000);
@@ -40,7 +40,38 @@ public class HistoryEdit {
 	    Thread.sleep(10000);
 	   Assert.assertTrue(his.verifyTable());
 	    
+	}*/
+	@Test(priority = 2)
+	public void verifyInvalidMrNumber() throws IOException, InterruptedException {
+		String s = sr.Searching();
+		Thread.sleep(10000);
+		HistorEdit his = new HistorEdit(driver);
+		his.selectHistory();
+		driver.manage().window().maximize();
+		Thread.sleep(1000);
+		Assert.assertTrue(his.displayPopUp());
+	    his.searchMr("86");
+	    Thread.sleep(1000);
+	    his.searchButton();
+	    Thread.sleep(10000);
+	   Assert.assertTrue(his.verifyInavlidTable());
+	    
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/* @Test(priority=2)
 	 public void searchName() throws InterruptedException{
 		Thread.sleep(10000);

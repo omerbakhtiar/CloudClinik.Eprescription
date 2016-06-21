@@ -87,4 +87,16 @@ public class HistorEdit {
 		}
 	}
 
+	
+	public boolean verifyInavlidTable(){
+		WebElement ele=driver.findElement(By.id("_Eprescription_WAR_CloudClinikportlet_:tool_form:pres_print_panel:dtdt_data")).
+				findElement(By.tagName("tr")).findElement(By.tagName("td"));
+		
+		if(td.contains("No records found.")){
+			return true;
+		}else {
+			return false;
+		}
+				
+	}
 }
