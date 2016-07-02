@@ -28,7 +28,7 @@ public class FavoriteEprescription {
 
 	@BeforeTest
 	public void call() throws IOException, InterruptedException {
-		String s = sr.Searching();
+		String s = sr.Searching("974100232885", "infogistic@1"," 974100301865");
 		driver.manage().window().maximize();
 		Thread.sleep(1000);
 	}

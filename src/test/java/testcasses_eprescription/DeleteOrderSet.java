@@ -25,7 +25,7 @@ public class DeleteOrderSet {
 
 	@Test(enabled = false)
 	public void deleteOrderSet() throws IOException, InterruptedException {
-		String s = sr.Searching();
+		String s = sr.Searching("974100232885", "infogistic@1"," 974100301865");
 		Thread.sleep(10000);
 		driver.manage().window().maximize();
 		Thread.sleep(10000);
@@ -39,7 +39,7 @@ public class DeleteOrderSet {
 	public void deleteComplaints() throws InterruptedException, IOException {
 		driver.manage().deleteAllCookies();
 		Thread.sleep(10000);
-		String s = sr.Searching();
+		String s = sr.Searching("974100232885", "infogistic@1"," 974100301865");
 		Thread.sleep(10000);
 		driver.manage().window().maximize();
 		Thread.sleep(10000);

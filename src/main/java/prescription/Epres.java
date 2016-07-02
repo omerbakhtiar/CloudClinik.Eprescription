@@ -1,5 +1,7 @@
 package prescription;
 
+import helper.Helper;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,16 +58,17 @@ public class Epres {
 		divs.get(1).click();
 	}
 
-	public String Searching() throws IOException, InterruptedException {
+	public String Searching(String code,String password,String patient) throws IOException, InterruptedException {
 
 		ArrayList<WebElement> arr = new ArrayList<WebElement>();
 
 		Login log = new Login(driver);
 		Thread.sleep(1000);
-		log.Logincredentials("974100232884", "infogistic@1");
-
+		log.Logincredentials(code,password);
+      
+		Helper help=new Helper(driver);
 		Pateintvital vi = new Pateintvital(driver);
-		Thread.sleep(8000);
+		Thread.sleep(10000);
 		vi.searchPatient();
 
 		Appointment app = new Appointment(driver);
@@ -77,7 +80,7 @@ public class Epres {
 				.findElements(By.tagName("div"));
 		Thread.sleep(20000);
 
-		arr.get(2).findElement(By.tagName("input")).sendKeys("974100301865");
+		arr.get(2).findElement(By.tagName("input")).sendKeys(patient);
 
 		Thread.sleep(10000);
 
@@ -822,7 +825,7 @@ public class Epres {
 						By.id("_Eprescription_WAR_CloudClinikportlet_:childDoseCalcForm:mg"))
 						.sendKeys(Keys.ENTER);
 				break;
-				
+
 			} catch (StaleElementReferenceException e) {
 				System.out
 						.println("Attempting to recover from StaleElementReferenceException ...");
@@ -1214,6 +1217,54 @@ public class Epres {
 			attempts++;
 		}
 		return result;
+	}
+
+	public void save() {
+		driver.findElement(
+				By.id("_Eprescription_WAR_CloudClinikportlet_:presc_form:btn_presc_save_only"))
+				.click();
+	}
+
+	public void savePrint() {
+		driver.findElement(
+				By.id("_Eprescription_WAR_CloudClinikportlet_:presc_form:btn_presc_save_print"))
+				.click();
+	}
+
+	public void clickNoteHistory() {
+		driver.findElement(
+				By.id("_Eprescription_WAR_CloudClinikportlet_:presc_form:applyDoctorNotesBtn"))
+				.click();
+	}
+
+	public boolean verifyNotesHistoryData(String date,String notes) throws InterruptedException {
+		String data;
+		WebElement e = driver
+				.findElement(By
+						.id("_Eprescription_WAR_CloudClinikportlet_:notes_history_form:dt_patnotes_data"));
+		row = (ArrayList<WebElement>) e.findElements(By.tagName("tr"));
+		Thread.sleep(1000);
+
+		for (int i = 0; i < row.size(); i++) {
+			td = (ArrayList<WebElement>) row.get(i).findElements(
+					By.tagName("td"));
+			if(td.get(0).getText().contains(date)&& td.get(1).getText().contains(notes)){
+				result= true;
+				
+			}else{
+				result= false;
+			}
+		}
+		return result;
+	}
+
+	public void clickApplyTemplates(){
+      
+		driver.findElement(By.id("_Eprescription_WAR_CloudClinikportlet_:presc_form:applyDoctorNotesBtn")).click();
+	}
+
+	public void clickTemplateHistory(){
+		driver.findElement(By.tagName("_Eprescription_WAR_CloudClinikportlet_:presc_form:templateHistoryBtn")).click();
 	}
 
 }

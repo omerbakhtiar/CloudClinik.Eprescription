@@ -29,7 +29,7 @@ public class QuickHistoryTest {
 	@Test(priority = 1)
 	public void verifyMrNumber() throws IOException, InterruptedException {
 		Thread.sleep(10000);
-		String s = sr.Searching();
+		String s = sr.Searching("974100232885", "infogistic@1"," 974100301865");
 		Thread.sleep(20000);
 		driver.manage().window().maximize();
 

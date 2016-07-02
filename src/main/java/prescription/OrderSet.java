@@ -81,8 +81,12 @@ public class OrderSet {
 	}
 
 	public void clickFavoriteDisease() throws InterruptedException {
+		WebElement element = driver.findElement(By.id("_Eprescription_WAR_CloudClinikportlet_:os_form:diseaseFavoriteBtn"));
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+		Thread.sleep(500); 
+	
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		Thread.sleep(200000);
+		Thread.sleep(10000);
 		js.executeScript("document.getElementById('_Eprescription_WAR_CloudClinikportlet_:os_form:diseaseFavoriteBtn').click()");
 
 	}

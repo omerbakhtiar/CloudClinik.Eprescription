@@ -39,11 +39,19 @@ public class Helper {
 
 	}
 
-	public void waits(WebDriver driver) {
+	public static void waits(WebDriver driver) {
 
 		FluentWait wait = new FluentWait(driver)
-				.withTimeout(30, TimeUnit.SECONDS)
+				.withTimeout(2, TimeUnit.MINUTES)
 				.pollingEvery(5, TimeUnit.SECONDS)
 				.ignoring(NoSuchElementException.class);
+	}
+
+	public static void implicitWait(WebDriver driver) {
+		driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
+	}
+
+	public static void maximize(WebDriver driver) {
+		driver.manage().window().maximize();
 	}
 }

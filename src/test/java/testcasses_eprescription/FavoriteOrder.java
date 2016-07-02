@@ -22,7 +22,7 @@ public class FavoriteOrder {
 
 	@Test(priority = 1)
 	public void complaints() throws IOException, InterruptedException {
-		String s = sr.Searching();
+		String s = sr.Searching("974100232885", "infogistic@1"," 974100301865");
 		Thread.sleep(10000);
 		driver.manage().window().maximize();
 		Thread.sleep(1000);
@@ -41,7 +41,7 @@ public class FavoriteOrder {
 		order.addTemplate();
 		Thread.sleep(1000);
 		order.closeNotesTemplate();
-		Thread.sleep(10000);
+		Thread.sleep(1000);
 
 	}
 

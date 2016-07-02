@@ -28,7 +28,7 @@ public class medicalCertificate {
    public void enterData() throws InterruptedException, IOException {
 
 
-		String s = sr.Searching();
+		String s = sr.Searching("974100232885", "infogistic@1"," 974100301865");
 		Thread.sleep(10000);
 		driver.manage().window().maximize();
 		

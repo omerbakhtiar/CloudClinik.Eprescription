@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="testcasses_eprescription.HistoryEdit">
+      <class name="testcasses_dentalcare.DCare">
         <methods>
-          <include name="verifyMrNumber"/>
+          <include name="selectTeeth"/>
         </methods>
-      </class> <!-- testcasses_eprescription.HistoryEdit -->
+      </class> <!-- testcasses_dentalcare.DCare -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

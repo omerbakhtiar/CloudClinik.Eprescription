@@ -3,6 +3,7 @@ package prescription;
 import java.util.ArrayList;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,6 +13,7 @@ public class HistorEdit {
 	WebDriver driver;
 	ArrayList<WebElement> row = new ArrayList<WebElement>();
 	ArrayList<WebElement> td = new ArrayList<WebElement>();
+	ArrayList<WebElement> a = new ArrayList<WebElement>();
 
 	public HistorEdit(WebDriver driv) {
 		driver = driv;
@@ -92,11 +94,28 @@ public class HistorEdit {
 		WebElement ele=driver.findElement(By.id("_Eprescription_WAR_CloudClinikportlet_:tool_form:pres_print_panel:dtdt_data")).
 				findElement(By.tagName("tr")).findElement(By.tagName("td"));
 		
-		if(td.contains("No records found.")){
+		if(ele.getText().contains("No records found.")){
 			return true;
 		}else {
 			return false;
 		}
 				
 	}
+	
+	public void editPrescrition(String date) throws InterruptedException{
+		WebElement ele=driver.findElement(By.id("_Eprescription_WAR_CloudClinikportlet_:tool_form:pres_print_panel:dtdt_data"));
+		
+		row=(ArrayList<WebElement>) ele.findElements(By.tagName("tr"));
+		
+		td=(ArrayList<WebElement>) row.get(0).findElements(By.tagName("td"));
+		WebElement element = driver.findElement(By.id("_Eprescription_WAR_CloudClinikportlet_:tool_form:pres_print_panel:dtdt:0:j_idt514"));
+		
+			
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+		
+		
+		System.out.println(td.get(0).findElement(By.tagName("span")).getText());
+		
+	}
+	
 }

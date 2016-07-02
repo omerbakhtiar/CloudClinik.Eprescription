@@ -24,7 +24,7 @@ public class LabHistoryTest {
 	  private StringBuffer verificationErrors = new StringBuffer();
 	@Test(enabled=false)
 	public void insertLabHistory() throws IOException, InterruptedException {
-		String s = sr.Searching();
+		String s = sr.Searching("974100232885", "infogistic@1"," 974100301865");
 		Thread.sleep(20000);
 
 		driver.manage().window().maximize();
@@ -61,7 +61,7 @@ public class LabHistoryTest {
 
 	@Test(enabled=false)
 	public void testTable() throws IOException, InterruptedException {
-		String s = sr.Searching();
+		String s = sr.Searching("974100232885", "infogistic@1"," 974100301865");
 		Thread.sleep(20000);
 
 		driver.manage().window().maximize();
@@ -82,7 +82,7 @@ public class LabHistoryTest {
 
 	@Test(enabled=false)
 	public void testSeenPatient() throws IOException, InterruptedException{
-		String s = sr.Searching();
+		String s = sr.Searching("974100232885", "infogistic@1"," 974100301865");
 	
 		Thread.sleep(20000);
 
@@ -101,7 +101,7 @@ public class LabHistoryTest {
 	
 	@Test(priority=2)
 	public void insertLabSet() throws IOException, InterruptedException{
-		String s = sr.Searching();
+		String s = sr.Searching("974100232885", "infogistic@1"," 974100301865");
 		
 		Thread.sleep(20000);
 

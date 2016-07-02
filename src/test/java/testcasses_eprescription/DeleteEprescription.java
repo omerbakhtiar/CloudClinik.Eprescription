@@ -18,7 +18,7 @@ public class DeleteEprescription {
 
 	@Test(priority = 1)
 	public void deleteComplaints() throws InterruptedException, IOException {
-		String s = sr.Searching();
+		String s = sr.Searching("974100232885", "infogistic@1"," 974100301865");
 		Thread.sleep(10000);
 		sr.selectCancel();
 		driver.manage().window().maximize();

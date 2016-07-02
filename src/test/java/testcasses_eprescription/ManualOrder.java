@@ -23,14 +23,14 @@ public class ManualOrder {
 	  private StringBuffer verificationErrors = new StringBuffer(); 
  	@Test(priority = 1)
 	public void complaints() throws IOException, InterruptedException {
-		String s = sr.Searching();
+		String s = sr.Searching("974100232885", "infogistic@1"," 974100301865");
 		Thread.sleep(10000);
 		driver.manage().window().maximize();
 		Thread.sleep(1000);
 		order.selectOrderSet();
 		Thread.sleep(10000);
 		order.clickAddNew();
-		Thread.sleep(10000);
+		Thread.sleep(20000);
 	 
 	  }
  	
