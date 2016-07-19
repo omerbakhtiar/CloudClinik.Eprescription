@@ -31,7 +31,8 @@ public class MedicalCertificate {
 	}
     
 	public void submit(){
-		driver.findElement(By.id("_Eprescription_WAR_CloudClinikportlet_:addCertificateForm:j_idt194")).submit();
+		WebElement ele=driver.findElement(By.cssSelector("button[id^='_Eprescription_WAR_CloudClinikportlet_:addCertificateForm:j_idt']"));
+		ele.submit();
 	}
 
 }

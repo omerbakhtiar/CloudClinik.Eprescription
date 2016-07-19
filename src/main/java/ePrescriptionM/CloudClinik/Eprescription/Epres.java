@@ -624,20 +624,25 @@ public class Epres {
 						+ index + ":loincResultComments")).sendKeys(data);
 	}
 
-	public void insertLabSetResult(int index, String data) {
-		driver.findElement(
-				By.id("_Eprescription_WAR_CloudClinikportlet_:presc_form:loincDT:"
-						+ index + ":j_idt666:" + index + ":loincSetResult"))
-				.sendKeys(data);
+	public void insertLabSetResult(int index, String data)
+			throws InterruptedException {
+		WebElement ele = driver.findElement(By.cssSelector("input[id$='"
+				+ index + ":loincSetResult']"));
+
+		Thread.sleep(10000);
+		ele.sendKeys(data);
+
 	}
 
-	public void insertLabSetComments(int index, String data) {
-		driver.findElement(
-				By.id("_Eprescription_WAR_CloudClinikportlet_:presc_form:loincDT:"
-						+ index
-						+ ":j_idt666:"
-						+ index
-						+ ":loincSetResultComments")).sendKeys(data);
+	public void insertLabSetComments(int index, String data)
+			throws InterruptedException {
+
+		WebElement ele = driver.findElement(By.cssSelector("input[id$='"
+				+ index + ":loincSetResultComments']"));
+
+		Thread.sleep(10000);
+		ele.sendKeys(data);
+
 	}
 
 	public void clickFavoriteLab() throws InterruptedException {
@@ -647,7 +652,7 @@ public class Epres {
 		((JavascriptExecutor) driver).executeScript(
 				"arguments[0].scrollIntoView(true);", element);
 		Thread.sleep(1000);
-		
+
 		Thread.sleep(1000);
 		driver.findElement(
 				By.id("_Eprescription_WAR_CloudClinikportlet_:presc_form:applyFavoriteLoinc"))
@@ -844,8 +849,10 @@ public class Epres {
 				By.id("_Eprescription_WAR_CloudClinikportlet_:presc_form:suggestions_input"))
 				.sendKeys(data);
 		Thread.sleep(1000);
-	   WebElement ele=driver.findElement(By.id("_Eprescription_WAR_CloudClinikportlet_:presc_form:suggestions_panel"));
-	   ele.findElement(By.tagName("ul")).findElement(By.tagName("li")).click();
+		WebElement ele = driver
+				.findElement(By
+						.id("_Eprescription_WAR_CloudClinikportlet_:presc_form:suggestions_panel"));
+		ele.findElement(By.tagName("ul")).findElement(By.tagName("li")).click();
 	}
 
 	public void clickFavoriteMedicineSRecord(String path) {
@@ -885,7 +892,7 @@ public class Epres {
 		ele.clear();
 		Thread.sleep(1000);
 		ele.sendKeys(String.valueOf(weight));
-		
+
 		return weight;
 	}
 
@@ -912,17 +919,18 @@ public class Epres {
 		driver.findElement(
 				By.id("_Eprescription_WAR_CloudClinikportlet_:childDoseCalcForm:mg"))
 				.sendKeys(String.valueOf(dosage));
-		
-       Thread.sleep(10000);
-       driver.findElement(
-				By.id("_Eprescription_WAR_CloudClinikportlet_:childDoseCalcForm:mg")).sendKeys(Keys.ENTER);
+
+		Thread.sleep(10000);
+		driver.findElement(
+				By.id("_Eprescription_WAR_CloudClinikportlet_:childDoseCalcForm:mg"))
+				.sendKeys(Keys.ENTER);
 	}
 
 	public double calculateClarkRule(double weight, double adultDose) {
 		double res = weight * 2.2046;
 		double value = (res / 150) * adultDose;
 		double rounded = (double) Math.round(value * 100) / 100;
-		
+
 		return rounded;
 	}
 
@@ -1021,30 +1029,27 @@ public class Epres {
 				By.id("_Eprescription_WAR_CloudClinikportlet_:fav_medicine_popup_form:closeMedicineFavoritePopup"))
 				.click();
 	}
-	
+
 	public double getCalDoseValue() {
 
 		WebElement ele = driver.findElement(By.className("text-result"))
 				.findElement(By.tagName("strong"));
 		String s = ele.getText();
-		
+
 		System.out.println(s);
 		return Double.valueOf(s);
 	}
-	
-	public void selectSeenPatient() throws InterruptedException{
+
+	public void selectSeenPatient() throws InterruptedException {
 		Thread.sleep(20000);
 		driver.manage().window().maximize();
 		Thread.sleep(20000);
-        selectCancel();
-        Thread.sleep(10000);
+		selectCancel();
+		Thread.sleep(10000);
 		LabHistory lab = new LabHistory(driver);
 		lab.selectSeenPatient("test");
 	}
-	
-	
-	
-	
+
 	public void deleteDiseases() throws InterruptedException {
 		WebElement ele = driver
 				.findElement(

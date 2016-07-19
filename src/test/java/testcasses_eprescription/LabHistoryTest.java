@@ -19,12 +19,14 @@ public class LabHistoryTest {
 
 	WebDriver driver = new FirefoxDriver();
 	Epres sr = new Epres(driver);
-    LabSet set=new LabSet(driver);
-	  private boolean acceptNextAlert = true;
-	  private StringBuffer verificationErrors = new StringBuffer();
-	@Test(enabled=false)
+	LabSet set = new LabSet(driver);
+	private boolean acceptNextAlert = true;
+	private StringBuffer verificationErrors = new StringBuffer();
+
+	@Test(enabled = false)
 	public void insertLabHistory() throws IOException, InterruptedException {
-		String s = sr.Searching("974100232885", "infogistic@1"," 974100301865");
+		String s = sr
+				.Searching("974100232885", "infogistic@1", " 974100301865");
 		Thread.sleep(20000);
 
 		driver.manage().window().maximize();
@@ -45,13 +47,13 @@ public class LabHistoryTest {
 
 		lab.AddResult();
 		Thread.sleep(20000);
-        lab.insertResult("12");
-        Thread.sleep(10000);
+		lab.insertResult("12");
+		Thread.sleep(10000);
 		lab.insertComments("newcomments");
 		Thread.sleep(2000);
 
 		lab.submitResult();
-		
+
 		Thread.sleep(10000);
 		lab.close();
 		driver.close();
@@ -59,9 +61,10 @@ public class LabHistoryTest {
 
 	}
 
-	@Test(enabled=false)
+	@Test(enabled = false)
 	public void testTable() throws IOException, InterruptedException {
-		String s = sr.Searching("974100232885", "infogistic@1"," 974100301865");
+		String s = sr
+				.Searching("974100232885", "infogistic@1", " 974100301865");
 		Thread.sleep(20000);
 
 		driver.manage().window().maximize();
@@ -73,36 +76,39 @@ public class LabHistoryTest {
 
 		lab.clickOnLabSet(3);
 		Thread.sleep(2000);
-		
-        boolean result= lab.getAddedResultSet("1","tesing comments for labset");
-	    
-	   // System.out.println(result);
-		
+
+		boolean result = lab.getAddedResultSet("1",
+				"tesing comments for labset");
+
+		// System.out.println(result);
+
 	}
 
-	@Test(enabled=false)
-	public void testSeenPatient() throws IOException, InterruptedException{
-		String s = sr.Searching("974100232885", "infogistic@1"," 974100301865");
-	
+	@Test(enabled = false)
+	public void testSeenPatient() throws IOException, InterruptedException {
+		String s = sr
+				.Searching("974100232885", "infogistic@1", " 974100301865");
+
 		Thread.sleep(20000);
 
 		driver.manage().window().maximize();
 		Thread.sleep(20000);
-        sr.selectCancel();
-        Thread.sleep(10000);
+		sr.selectCancel();
+		Thread.sleep(10000);
 		LabHistory lab = new LabHistory(driver);
 		lab.selectSeenPatient("Newone");
 		Thread.sleep(20000);
-	    set.select();
-	    Thread.sleep(20000);
-	    boolean result=set.getData("1","testing comments");
-	    org.testng.Assert.assertTrue(result);
+		set.select();
+		Thread.sleep(20000);
+		boolean result = set.getData("1", "testing comments");
+		org.testng.Assert.assertTrue(result);
 	}
-	
-	@Test(priority=2)
-	public void insertLabSet() throws IOException, InterruptedException{
-		String s = sr.Searching("974100232885", "infogistic@1"," 974100301865");
-		
+
+	@Test(priority = 2)
+	public void insertLabSet() throws IOException, InterruptedException {
+		String s = sr
+				.Searching("974100232885", "infogistic@1", " 974100301865");
+
 		Thread.sleep(20000);
 
 		driver.manage().window().maximize();
@@ -114,48 +120,46 @@ public class LabHistoryTest {
 
 		lab.clickOnLabSet(0);
 		Thread.sleep(2000);
-		
+
 		lab.AddResutlLabSet(0);
 		Thread.sleep(10000);
 		lab.AddRecordLabSet("1");
 		lab.AddComments("testing comments");
 		Thread.sleep(1000);
-		lab.AddResultLabSet();	
+		lab.AddResultLabSet();
 	}
-	
+
 	private boolean isElementPresent(By by) {
-	    try {
-	      driver.findElement(by);
-	      return true;
-	    } catch (NoSuchElementException e) {
-	      return false;
-	    }
-	  }
+		try {
+			driver.findElement(by);
+			return true;
+		} catch (NoSuchElementException e) {
+			return false;
+		}
+	}
 
-	  private boolean isAlertPresent() {
-	    try {
-	      driver.switchTo().alert();
-	      return true;
-	    } catch (NoAlertPresentException e) {
-	      return false;
-	    }
-	  }
+	private boolean isAlertPresent() {
+		try {
+			driver.switchTo().alert();
+			return true;
+		} catch (NoAlertPresentException e) {
+			return false;
+		}
+	}
 
-	  private String closeAlertAndGetItsText() {
-	    try {
-	      Alert alert = driver.switchTo().alert();
-	      String alertText = alert.getText();
-	      if (acceptNextAlert) {
-	        alert.accept();
-	      } else {
-	        alert.dismiss();
-	      }
-	      return alertText;
-	    } finally {
-	      acceptNextAlert = true;
-	    }
-	  }
+	private String closeAlertAndGetItsText() {
+		try {
+			Alert alert = driver.switchTo().alert();
+			String alertText = alert.getText();
+			if (acceptNextAlert) {
+				alert.accept();
+			} else {
+				alert.dismiss();
+			}
+			return alertText;
+		} finally {
+			acceptNextAlert = true;
+		}
+	}
 
-
-	
 }

@@ -58,15 +58,16 @@ public class Epres {
 		divs.get(1).click();
 	}
 
-	public String Searching(String code,String password,String patient) throws IOException, InterruptedException {
+	public String Searching(String code, String password, String patient)
+			throws IOException, InterruptedException {
 
 		ArrayList<WebElement> arr = new ArrayList<WebElement>();
 
 		Login log = new Login(driver);
 		Thread.sleep(1000);
-		log.Logincredentials(code,password);
-      
-		Helper help=new Helper(driver);
+		log.Logincredentials(code, password);
+
+		Helper help = new Helper(driver);
 		Pateintvital vi = new Pateintvital(driver);
 		Thread.sleep(10000);
 		vi.searchPatient();
@@ -91,7 +92,7 @@ public class Epres {
 		Thread.sleep(10000);
 
 		vi.clicktable();
-		Thread.sleep(3000);
+		Thread.sleep(10000);
 
 		String s = driver
 				.findElement(
@@ -618,21 +619,31 @@ public class Epres {
 	}
 
 	public void insertLabSetResult(int index, String data) {
+
 		driver.findElement(
-				By.id("_Eprescription_WAR_CloudClinikportlet_:presc_form:loincDT:"
-						+ index + ":j_idt666:0:loincSetResult")).sendKeys(data);
+				By.cssSelector("input[id$=':" + index + ":loincSetResult']"))
+				.sendKeys(data);
 	}
 
 	public void insertLabSetComments(int index, String data) {
 		driver.findElement(
-				By.id("_Eprescription_WAR_CloudClinikportlet_:presc_form:loincDT:1:j_idt666:"
-						+ index + ":loincSetResultComments")).sendKeys(data);
+				By.cssSelector("input[id$=':" + index
+						+ ":loincSetResultComments']")).sendKeys(data);
+
 	}
 
-	public void clickFavoriteLab() {
-		driver.findElement(
-				By.id("_Eprescription_WAR_CloudClinikportlet_:presc_form:applyFavoriteLoinc"))
-				.click();
+	public void clickFavoriteLab() throws InterruptedException {
+		WebElement element = driver
+				.findElement(By
+						.id("_Eprescription_WAR_CloudClinikportlet_:presc_form:applyFavoriteLoinc"));
+
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].scrollIntoView(true);", element);
+
+		Thread.sleep(1000);
+
+		element.click();
+
 	}
 
 	public boolean FavoriteLabPopupDisplayed() {
@@ -641,7 +652,13 @@ public class Epres {
 				.isDisplayed();
 	}
 
-	public void searchFavoriteLabData(String data) {
+	public void searchFavoriteLabData(String data) throws InterruptedException {
+
+		driver.findElement(
+				By.id("_Eprescription_WAR_CloudClinikportlet_:fav_loinc_popup_form:searchLoinc"))
+				.clear();
+		Thread.sleep(10000);
+
 		driver.findElement(
 				By.id("_Eprescription_WAR_CloudClinikportlet_:fav_loinc_popup_form:searchLoinc"))
 				.sendKeys(data);
@@ -735,7 +752,7 @@ public class Epres {
 	}
 
 	public void clickFavoriteMedicineSRecord(String path) {
-		driver.findElement(By.linkText(path));
+		driver.findElement(By.partialLinkText(path)).click();
 	}
 
 	public void clickDosageCalculator() throws InterruptedException {
@@ -754,10 +771,6 @@ public class Epres {
 			throws InterruptedException {
 
 		if (name == "Clark'sRule") {
-			driver.findElement(
-					By.id("_Eprescription_WAR_CloudClinikportlet_:childDoseCalcForm:options:0"))
-					.click();
-
 			res = calculateClarkRule(Weight, Dosage);
 
 		} else if (name == "Young'sRule") {
@@ -1237,7 +1250,8 @@ public class Epres {
 				.click();
 	}
 
-	public boolean verifyNotesHistoryData(String date,String notes) throws InterruptedException {
+	public boolean verifyNotesHistoryData(String date, String notes)
+			throws InterruptedException {
 		String data;
 		WebElement e = driver
 				.findElement(By
@@ -1248,23 +1262,28 @@ public class Epres {
 		for (int i = 0; i < row.size(); i++) {
 			td = (ArrayList<WebElement>) row.get(i).findElements(
 					By.tagName("td"));
-			if(td.get(0).getText().contains(date)&& td.get(1).getText().contains(notes)){
-				result= true;
-				
-			}else{
-				result= false;
+			if (td.get(0).getText().contains(date)
+					&& td.get(1).getText().contains(notes)) {
+				result = true;
+
+			} else {
+				result = false;
 			}
 		}
 		return result;
 	}
 
-	public void clickApplyTemplates(){
-      
-		driver.findElement(By.id("_Eprescription_WAR_CloudClinikportlet_:presc_form:applyDoctorNotesBtn")).click();
+	public void clickApplyTemplates() {
+
+		driver.findElement(
+				By.id("_Eprescription_WAR_CloudClinikportlet_:presc_form:applyDoctorNotesBtn"))
+				.click();
 	}
 
-	public void clickTemplateHistory(){
-		driver.findElement(By.tagName("_Eprescription_WAR_CloudClinikportlet_:presc_form:templateHistoryBtn")).click();
+	public void clickTemplateHistory() {
+		driver.findElement(
+				By.tagName("_Eprescription_WAR_CloudClinikportlet_:presc_form:templateHistoryBtn"))
+				.click();
 	}
 
 }

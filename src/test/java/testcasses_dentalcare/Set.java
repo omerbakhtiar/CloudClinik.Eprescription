@@ -27,7 +27,6 @@ public class Set {
 	@Test(priority = 1)
 	public void orderSet() throws IOException, InterruptedException {
 		sr.Searching("974100232886", "infogistic@1", " 974100301865");
-		help.implicitWait(driver);
 		help.maximize(driver);
 		dental.clickOrderSet();
 		Thread.sleep(1000);
@@ -37,9 +36,11 @@ public class Set {
 	}
 
 	@Test(priority = 2)
-	public void setComplaint() {
+	public void setComplaint() throws InterruptedException {
 		set.setComlaintsSet("pain fom acute gigivitits over tooth");
+		Thread.sleep(10000);
 		set.selectComplaint();
+		Thread.sleep(10000);
 
 	}
 
@@ -53,19 +54,22 @@ public class Set {
 
 	@Test(priority = 4)
 	public void setPrimaryDiease() throws InterruptedException {
-		Thread.sleep(1000);
+		Thread.sleep(10000);
 		set.insertDieases("E67.3 : Hypervitaminosis D");
 		Thread.sleep(1000);
 		set.selectDiease();
+		Thread.sleep(10000);
 	}
 
 	@Test(priority = 5)
 	public void setProcedure() throws InterruptedException {
 		Thread.sleep(1000);
 		set.insertProcedure("GEN07");
+		Thread.sleep(10000);
 		set.selectProcedure();
-		Thread.sleep(1000);
+		Thread.sleep(10000);
 		set.insertAdditionalDiagnosis("E67.3");
+		Thread.sleep(10000);
 		set.selectAdditionalDiagnosis();
 		Thread.sleep(1000);
 	}
@@ -77,7 +81,7 @@ public class Set {
 		set.insertMedicine("CAVED2", 0);
 		Thread.sleep(1000);
 		set.selectMedcine(0);
-		Thread.sleep(10000);
+		Thread.sleep(1000);
 		// CAVED2 : CAVED - S Tabs 60 tabs
 		set.insertDuration(10);
 		set.insertFrequency("qid: four times a day", 0);

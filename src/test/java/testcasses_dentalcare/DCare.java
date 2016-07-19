@@ -33,86 +33,86 @@ public class DCare {
 		Thread.sleep(1000);
 		dental.setComplaints("nauzia");
 		Thread.sleep(10000);
-		dental.clickAdd();
 
+	}
+
+	@Test(priority = 2)
+	public void setDoctorNotes() throws InterruptedException {
+		dental.applyTemplates();
+		Thread.sleep(1000);
+		dental.setNoteTemplate("test");
+		Thread.sleep(10000);
+		dental.setDoctor("testing notes");
 	}
 
 	@Test(priority = 3)
-	public void setFavoriteDiease() throws InterruptedException {
-		Thread.sleep(1000);
-		dental.clickFavroiteDiease();
-		Thread.sleep(2000);
-		dental.insertFavoriteDieaseData("K04.4");
-		Thread.sleep(1000);
-		dental.searchFavoriteDiease();
+	public void setPrimaryDiease() throws InterruptedException {
 		Thread.sleep(10000);
-		dental.clickSearchFavoriteDiease();
+		dental.clickAdd();
+		Thread.sleep(1000);
+		dental.setPrimaryDisease("E67.3", 0);
+
 	}
 
-	/*
-	 * /
-	 * 
-	 * @Test(priority=5) public void selectFavoriteProcedure() throws
-	 * InterruptedException{ Thread.sleep(2000);
-	 * dental.clickFavoriteProcedure(); Thread.sleep(1000);
-	 * dental.insertFavoriteProcedureData("97014-00");
-	 * dental.searchFavoriteProcedure(); Thread.sleep(10000);
-	 * dental.selectFavoriteProcedure(); Thread.sleep(10000); } /
-	 * 
-	 * /
-	 * 
-	 * @Test(priority=5) public void setFavoriteAdditionalDiagnosis() throws
-	 * InterruptedException{ dental.clickFavoriteAdditionalDiagnosis();
-	 * Thread.sleep(1000); dental.insertFavoriteAdditonalDiagnosis("");
-	 * Thread.sleep(2000); dental.searchFavortieAddDiagnosis();
-	 * Thread.sleep(2000); dental.clickFavoriteDiagnosisList(); } /
-	 * 
-	 * /
-	 * 
-	 * @Test(priority=2) public void setDoctorNotes() throws
-	 * InterruptedException{ dental.applyTemplates(); Thread.sleep(1000);
-	 * dental.setNoteTemplate("test"); Thread.sleep(10000);
-	 * dental.setDoctor("testing notes"); }
-	 * 
-	 * @Test(priority=3) public void setPrimaryDiease() throws
-	 * InterruptedException{ Thread.sleep(2000); dental.clickAdd();
-	 * Thread.sleep(1000); dental.setPrimaryDisease("E67.3",0);
-	 * 
-	 * }
-	 * 
-	 * @Test(priority=4) public void setProcedure() throws InterruptedException{
-	 * Thread.sleep(1000); dental.setProcedure("GEN02",0); }
-	 * 
-	 * 
-	 * @Test(priority=5) public void setAdditionalDiagnosis() throws
-	 * InterruptedException{ Thread.sleep(1000);
-	 * dental.setAdditional("E67.3",0); }
-	 * 
-	 * @Test(priority=6) public void setTeeth() throws InterruptedException{
-	 * Thread.sleep(1000); dental.setTeeth("MX",0); }
-	 */
+	@Test(priority = 4)
+	public void setProcedure() throws InterruptedException {
+		Thread.sleep(1000);
+		dental.setProcedure("GEN02", 0);
+		Thread.sleep(10000);
+	}
 
-	@Test(priority = 6)
+
+	@Test(priority = 5)
+	public void setAdditionalDiagnosis() throws InterruptedException {
+		Thread.sleep(1000);
+		dental.setAdditional("S97.1", 0);
+	}
+
+	@Test(enabled =false)
+	public void setTeeth() throws InterruptedException {
+		Thread.sleep(1000);
+		dental.setTeeth("MX", 0);
+	}
+
+	@Test(priority = 8)
 	public void selectTeeth() throws InterruptedException {
 		Thread.sleep(10000);
 		dental.clickToothNumber(0);
 		Thread.sleep(1000);
-		// dental.clickPrimaryTeeth();
-		// dental.setTeeth(10);
-		// Thread.sleep(1000);
-		// dental.singleKidJaw("T");
+		Thread.sleep(10000);
 		dental.setSingleTeeth(10);
 		Thread.sleep(10000);
-		dental.clickToothNumber(0);
+		/*dental.clickToothNumber(0);
 		Thread.sleep(10000);
-		dental.clickOnFullMouth();
+		dental.clickOnFullMouth();*/
 		Thread.sleep(1000);
-		dental.save();
-		Thread.sleep(1000);
-		Assert.assertTrue(dental
-				.FMMMessage("No other tooth can be added with FM, MX or MN. Please review tooth numbers in your Prescription."));
 	}
 
+	
+	@Test(priority = 9)
+	public void selectMedicine() throws InterruptedException {
+		dental.clickMed();
+		Thread.sleep(1000);
+		dental.setsMedsName("panadol drop",0);
+		Thread.sleep(1000);
+		dental.setFrequency("bid: twice a day", 0);
+		Thread.sleep(10000);
+		dental.setDose("5", 0);
+		Thread.sleep(1000);
+		dental.setRoute("IM: Intramuscular", 0);
+		Thread.sleep(1000);
+		dental.setRefills("5", 0);
+		Thread.sleep(1000);
+		dental.duration("2", 0);
+
+	}
+
+	@Test(priority = 10)
+	public void save() throws InterruptedException {
+		Thread.sleep(10000);
+		dental.save();
+
+	}
 	private boolean isElementPresent(By by) {
 		try {
 			driver.findElement(by);

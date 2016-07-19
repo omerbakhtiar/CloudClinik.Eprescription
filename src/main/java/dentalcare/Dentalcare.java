@@ -19,6 +19,7 @@ public class Dentalcare {
 	ArrayList<WebElement> span = new ArrayList<WebElement>();
 	ArrayList<WebElement> divs = new ArrayList<WebElement>();
 	ArrayList<WebElement> subdivs = new ArrayList<WebElement>();
+	ArrayList<WebElement> li = new ArrayList<WebElement>();
 
 	public Dentalcare(WebDriver driver2) {
 		driver = driver2;
@@ -100,6 +101,7 @@ public class Dentalcare {
 	public void setNoteTemplate(String name) throws InterruptedException {
 		WebElement ele = driver.findElement(By
 				.id("_CCDENTAL_WAR_CCDENTALportlet_:nt_form:dt_nt_data"));
+
 		tr = (ArrayList<WebElement>) ele.findElements(By.tagName("tr"));
 
 		for (int i = 0; i < tr.size(); i++) {
@@ -108,10 +110,15 @@ public class Dentalcare {
 
 			if (td.get(i).getText().contains(name)) {
 				System.out.println(td.get(i).getText());
-				Thread.sleep(2000);
-				driver.findElement(
-						By.id("_CCDENTAL_WAR_CCDENTALportlet_:nt_form:dt_nt:"
-								+ i + ":applyNotesTemplateLink")).click();
+				Thread.sleep(10000);
+
+				WebElement element = driver.findElement(By
+						.id("_CCDENTAL_WAR_CCDENTALportlet_:nt_form:dt_nt:" + i
+								+ ":applyNotesTemplateLink"));
+
+				JavascriptExecutor jse = (JavascriptExecutor) driver;
+				jse.executeScript("arguments[0].click();", element);
+
 				break;
 			}
 
@@ -157,7 +164,7 @@ public class Dentalcare {
 		driver.findElement(
 				By.id("_CCDENTAL_WAR_CCDENTALportlet_:myform:tabView:diagnosticDT:"
 						+ index + ":diagnostics_input")).sendKeys(primary);
-		Thread.sleep(1000);
+		Thread.sleep(10000);
 		selectDisease(index);
 	}
 
@@ -518,35 +525,30 @@ public class Dentalcare {
 						.findElement(By
 								.id("_CCDENTAL_WAR_CCDENTALportlet_:toothSelectionForm:j_idt594:0:permanentUpperRightLink"));
 				jse.executeScript("arguments[0].click();", button);
-
 			} else if (teeth == 2) {
 				driver.findElement(
 						By.id("_CCDENTAL_WAR_CCDENTALportlet_:toothSelectionForm:j_idt594:1:permanentUpperRightLink"))
 						.click();
-
 			} else if (teeth == 3) {
 				driver.findElement(
 						By.id("_CCDENTAL_WAR_CCDENTALportlet_:toothSelectionForm:j_idt594:2:permanentUpperRightLink"))
 						.click();
-
 			} else if (teeth == 4) {
 				JavascriptExecutor jse = (JavascriptExecutor) driver;
 				jse.executeScript("document.getElementById('_CCDENTAL_WAR_CCDENTALportlet_:toothSelectionForm:j_idt594:3:permanentUpperRightLink"
 						+ "')" + ".click();");
-
 			} else if (teeth == 5) {
 				JavascriptExecutor jse = (JavascriptExecutor) driver;
 				jse.executeScript("document.getElementById('_CCDENTAL_WAR_CCDENTALportlet_:toothSelectionForm:j_idt594:4:permanentUpperRightLink').click();");
-
+			
 			} else if (teeth == 6) {
 				JavascriptExecutor jse = (JavascriptExecutor) driver;
 				jse.executeScript("document.getElementById('_CCDENTAL_WAR_CCDENTALportlet_:toothSelectionForm:j_idt594:5:permanentUpperRightLink').click();");
-
+		
 			} else if (teeth == 7) {
 				driver.findElement(
 						By.id("_CCDENTAL_WAR_CCDENTALportlet_:toothSelectionForm:j_idt594:6:permanentUpperRightLink"))
 						.click();
-
 			} else if (teeth == 8) {
 				driver.findElement(
 						By.id("_CCDENTAL_WAR_CCDENTALportlet_:toothSelectionForm:j_idt594:7:permanentUpperRightLink"))
@@ -562,44 +564,107 @@ public class Dentalcare {
 		js.executeScript("document.getElementById('_CCDENTAL_WAR_CCDENTALportlet_:myform:tabView:addMedication').click()");
 	}
 
-	public void setsMedsName(String name) throws InterruptedException {
+	public void setsMedsName(String name,int index) throws InterruptedException {
 		driver.findElement(
-				By.id("_CCDENTAL_WAR_CCDENTALportlet_:myform:tabView:medicationDT:0:md_medicine_input"))
+				By.id("_CCDENTAL_WAR_CCDENTALportlet_:myform:tabView:medicationDT:"+index+":md_medicine_input"))
 				.sendKeys(name);
 		Thread.sleep(10000);
 		driver.findElement(
-				By.id("_CCDENTAL_WAR_CCDENTALportlet_:myform:tabView:medicationDT:0:md_medicine_input"))
+				By.id("_CCDENTAL_WAR_CCDENTALportlet_:myform:tabView:medicationDT:"+index+":md_medicine_input"))
 				.sendKeys(Keys.ENTER);
 
 	}
 
-	public void setDose(String amount) throws InterruptedException {
+	public void setDose(String amount, int index) throws InterruptedException {
 
 		driver.findElement(
-				By.id("_CCDENTAL_WAR_CCDENTALportlet_:myform:tabView:medicationDT:0:md_dozeId_input"))
-				.clear();
+				By.id("_CCDENTAL_WAR_CCDENTALportlet_:myform:tabView:medicationDT:"
+						+ index + ":md_dozeId_input")).clear();
 		Thread.sleep(1000);
 		driver.findElement(
-				By.id("_CCDENTAL_WAR_CCDENTALportlet_:myform:tabView:medicationDT:0:md_dozeId_input"))
-				.sendKeys(amount);
+				By.id("_CCDENTAL_WAR_CCDENTALportlet_:myform:tabView:medicationDT:"
+						+ index + ":md_dozeId_input")).sendKeys(amount);
 
 	}
 
-	public void setFrequency(String frequency) throws InterruptedException {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("document.getElementById('_CCDENTAL_WAR_CCDENTALportlet_:myform:tabView:medicationDT:0:selectFreq_label').innerHtml='od:'");
+	public void setFrequency(String frequency, int index)
+			throws InterruptedException {
+		WebElement ele = driver
+				.findElement(By
+						.id("_CCDENTAL_WAR_CCDENTALportlet_:myform:tabView:medicationDT:"
+								+ index + ":selectFreq"));
+		Thread.sleep(1000);
+
+		divs = (ArrayList<WebElement>) ele.findElements(By.tagName("div"));
+		divs.get(2).click();
+
 		Thread.sleep(10000);
+		WebElement el = driver.findElement(By.id(""
+				+ "_CCDENTAL_WAR_CCDENTALportlet_:myform:tabView:medicationDT:"
+				+ index + ":selectFreq_panel"));
+
+		li = (ArrayList<WebElement>) el.findElement(By.tagName("div"))
+				.findElement(By.tagName("ul")).findElements(By.tagName("li"));
+
+		for (int i = 0; i < li.size(); i++) {
+
+			if (li.get(i).getText().contains(frequency)) {
+				li.get(i).click();
+			}
+
+		}
 	}
 
-	public void duration(String dur) throws InterruptedException {
+	public void duration(String dur, int index) throws InterruptedException {
 		driver.findElement(
-				By.id("_CCDENTAL_WAR_CCDENTALportlet_:myform:tabView:medicationDT:0:md_duration_input"))
-				.clear();
+				By.id("_CCDENTAL_WAR_CCDENTALportlet_:myform:tabView:medicationDT:"
+						+ index + ":md_duration_input")).clear();
 		Thread.sleep(1000);
 		driver.findElement(
-				By.id("_CCDENTAL_WAR_CCDENTALportlet_:myform:tabView:medicationDT:0:md_duration_input"))
-				.sendKeys(dur);
+				By.id("_CCDENTAL_WAR_CCDENTALportlet_:myform:tabView:medicationDT:"
+						+ index + ":md_duration_input")).sendKeys(dur);
 
+	}
+
+	public void setRefills(String amount, int index)
+			throws InterruptedException {
+
+		driver.findElement(
+				By.id("_CCDENTAL_WAR_CCDENTALportlet_:myform:tabView:medicationDT:"
+						+ index + ":medicineRefills_input")).clear();
+		Thread.sleep(1000);
+		driver.findElement(
+				By.id("_CCDENTAL_WAR_CCDENTALportlet_:myform:tabView:medicationDT:"
+						+ index + ":medicineRefills_input")).sendKeys(amount);
+	}
+
+	public void setRoute(String value, int index) throws InterruptedException {
+		WebElement ele = driver
+				.findElement(By
+						.id("_CCDENTAL_WAR_CCDENTALportlet_:myform:tabView:medicationDT:"
+								+ index + ":selectRoute"));
+		Thread.sleep(1000);
+
+		divs = (ArrayList<WebElement>) ele.findElements(By.tagName("div"));
+		divs.get(2).click();
+
+		Thread.sleep(10000);
+		WebElement el = driver
+				.findElement(By
+						.id("_CCDENTAL_WAR_CCDENTALportlet_:myform:tabView:medicationDT:"
+								+ index + ":selectRoute_panel"));
+
+		li = (ArrayList<WebElement>) el.findElement(By.tagName("div"))
+				.findElement(By.tagName("ul")).findElements(By.tagName("li"));
+
+		for (int i = 0; i < li.size(); i++) {
+
+			if (li.get(i).getText().contains(value)) {
+				li.get(i).click();
+				break;
+			}
+
+		}
 	}
 
 	public void setDiet(String diet) {
@@ -749,6 +814,7 @@ public class Dentalcare {
 
 					divs.get(i).findElement(By.tagName("div"))
 							.findElement(By.tagName("a")).click();
+					break;
 				}
 
 			}
@@ -765,6 +831,7 @@ public class Dentalcare {
 
 				if (s.matches(ag)) {
 					element.findElement(By.tagName("a")).click();
+					break;
 				}
 
 			}
@@ -780,6 +847,7 @@ public class Dentalcare {
 
 				if (s.matches(ag)) {
 					element.findElement(By.tagName("a")).click();
+					break;
 				}
 
 			}
@@ -799,6 +867,7 @@ public class Dentalcare {
 
 					divs.get(i).findElement(By.tagName("div"))
 							.findElement(By.tagName("a")).click();
+					break;
 				}
 
 			}
@@ -872,7 +941,14 @@ public class Dentalcare {
 				.click();
 	}
 
-	public void insertFavoriteAdditonalDiagnosis(String data) {
+	public void insertFavoriteAdditonalDiagnosis(String data)
+			throws InterruptedException {
+		driver.findElement(
+				By.id("_CCDENTAL_WAR_CCDENTALportlet_:icd_popup_form:searchIcd"))
+				.clear();
+
+		Thread.sleep(1000);
+
 		driver.findElement(
 				By.id("_CCDENTAL_WAR_CCDENTALportlet_:icd_popup_form:searchIcd"))
 				.sendKeys(data);
@@ -934,6 +1010,69 @@ public class Dentalcare {
 		} else {
 			return false;
 		}
+	}
+
+	public void clickFavoriteMedicine() {
+		driver.findElement(
+				By.id("_CCDENTAL_WAR_CCDENTALportlet_:myform:tabView:applyFavoriteMedicine"))
+				.click();
+	}
+
+	public void inserFavoriteMedRecord(String data) {
+		driver.findElement(
+				By.id("_CCDENTAL_WAR_CCDENTALportlet_:fav_medicine_popup_form:searchMed"))
+				.sendKeys(data);
+	}
+
+	public void searchFavoriteRecord() {
+		driver.findElement(
+				By.id("_CCDENTAL_WAR_CCDENTALportlet_:fav_medicine_popup_form:searchFavMedicineBtn"))
+				.click();
+	}
+
+	public void clickONFavoriteRecord() {
+		driver.findElement(
+				By.id("_CCDENTAL_WAR_CCDENTALportlet_:fav_medicine_popup_form:dt_nt:0:applyFavMedicineLink"))
+				.click();
+	}
+
+	public void close() {
+		driver.findElement(
+				By.id("_CCDENTAL_WAR_CCDENTALportlet_:fav_medicine_popup_form:closeMedicineFavoritePopup"))
+				.click();
+	}
+
+	public boolean FavoriteICDDDieaseisplayed() {
+		return driver
+				.findElement(
+						By.id("_CCDENTAL_WAR_CCDENTALportlet_:icd_popup_form_primary:j_idt500"))
+				.isDisplayed();
+
+	}
+
+	public boolean FavoriteProcedurePopup() {
+		return driver
+				.findElement(
+						By.id("_CCDENTAL_WAR_CCDENTALportlet_:fav_cpt_popup_form:j_idt481"))
+				.isDisplayed();
+	}
+
+	public boolean FavoriteAdditional() {
+		return driver
+				.findElement(
+						By.id("_CCDENTAL_WAR_CCDENTALportlet_:icd_popup_form:j_idt490"))
+				.isDisplayed();
+	}
+
+	public boolean FavoriteMedcine() {
+		return driver
+				.findElement(
+						By.id("_CCDENTAL_WAR_CCDENTALportlet_:fav_medicine_popup_form:j_idt511"))
+				.isDisplayed();
+	}
+
+	public void closeFavoriteMedicine() {
+
 	}
 
 }

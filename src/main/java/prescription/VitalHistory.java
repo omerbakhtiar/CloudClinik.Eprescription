@@ -40,10 +40,14 @@ public class VitalHistory {
 				.sendKeys(date);
 	}
 
-	public void search() {
-		driver.findElement(
-				By.id("_Eprescription_WAR_CloudClinikportlet_:vitalPatientHistoryForm:j_idt408"))
-				.click();
+	public void search() throws InterruptedException {
+		WebElement ele = driver
+				.findElement(By
+						.cssSelector("button[id^='_Eprescription_WAR_CloudClinikportlet_:vitalPatientHistoryForm:j_idt']"));
+
+		Thread.sleep(1000);
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", ele);
 	}
 
 	public void clickAllClinic() {
@@ -162,10 +166,11 @@ public class VitalHistory {
 				.findElement(By.tagName("a")).click();
 	}
 
-	public void closeVitalHistory() {
-		driver.findElement(
-				By.id("_Eprescription_WAR_CloudClinikportlet_:vitalPatientHistoryDialog"))
-				.click();
+	public void closeVitalHistory() throws InterruptedException {
+	
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("$('.ui-helper-clearfix a span').click();");
+
 	}
 
 	public void getTableData(String date) {
@@ -186,7 +191,7 @@ public class VitalHistory {
 						.getText(), td.get(2).getText(), td.get(3).getText(),
 						td.get(4).getText(), td.get(5).getText(), td.get(6)
 								.getText(), td.get(7).getText(), td.get(8)
-								.getText(),td.get(9).getText());
+								.getText(), td.get(9).getText());
 
 				vi.add(data);
 			}
@@ -211,15 +216,15 @@ public class VitalHistory {
 					&& vi.get(i).getBMI().contains(BMI)
 					&& vi.get(i).getBSL().contains(BSL)) {
 				result = true;
-				
+
 			} else {
 				result = false;
-				
+
 			}
 		}
 
 		return result;
-		
+
 	}
 
 }

@@ -50,9 +50,10 @@ public class QuickHistory {
 	}
 
 	public void clickSearch() {
-		driver.findElement(
-				By.id("_Eprescription_WAR_CloudClinikportlet_:quickPatienthistory:j_idt286"))
-				.click();
+		WebElement ele = driver
+				.findElement(By
+						.cssSelector("button[id^='_Eprescription_WAR_CloudClinikportlet_:quickPatienthistory:j_idt']"));
+		ele.click();
 	}
 
 	public boolean clickSoap() throws InterruptedException {
@@ -61,9 +62,11 @@ public class QuickHistory {
 		js.executeScript("document.getElementById('_Eprescription_WAR_CloudClinikportlet_:quickPatienthistory:documentsDataTable:0:quickPatientSoapNotes').click()");
 
 		Thread.sleep(10000);
+
+		// i think is being changed by the developer
 		boolean result = driver
 				.findElement(
-						By.id("_Eprescription_WAR_CloudClinikportlet_:printpatientfile:printDialogue_title"))
+						By.id("_Eprescription_WAR_CloudClinikportlet_:printpatientfile:printDialogue"))
 				.isDisplayed();
 
 		return result;
@@ -71,11 +74,8 @@ public class QuickHistory {
 
 	public void close() {
 
-		divs = (ArrayList<WebElement>) driver.findElement(
-				By.id("_CCDENTAL_WAR_CCDENTALportlet_:j_idt832")).findElements(
-				By.tagName("div"));
-
-		WebElement ele = divs.get(1).findElement(By.tagName("a"))
+		WebElement ele = driver.findElement(By.className("ui-overlay-visible"))
+				.findElement(By.tagName("div")).findElement(By.tagName("a"))
 				.findElement(By.tagName("span"));
 
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
@@ -84,9 +84,14 @@ public class QuickHistory {
 	}
 
 	public void closePdf() throws InterruptedException {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebElement ele = driver
+				.findElement(By
+						.cssSelector("a[id^='_Eprescription_WAR_CloudClinikportlet_:printpatientfile:j_idt']"));
+
 		Thread.sleep(1000);
-		js.executeScript("document.getElementById('_Eprescription_WAR_CloudClinikportlet_:printpatientfile:j_idt790').click()");
+
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", ele);
 
 	}
 

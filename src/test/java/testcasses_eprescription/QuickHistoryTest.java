@@ -48,6 +48,7 @@ public class QuickHistoryTest {
 		Thread.sleep(10000);
 
 		boolean res = his.clickSoap();
+		Thread.sleep(10000);
 		org.testng.Assert.assertTrue(res);
 
 		Thread.sleep(10000);
@@ -116,14 +117,14 @@ public class QuickHistoryTest {
 
 	}
 
-	  @AfterClass(alwaysRun = true)
+/*	  @AfterClass(alwaysRun = true)
 	  public void tearDown() throws Exception {
 	    driver.quit();
 	    String verificationErrorString = verificationErrors.toString();
 	    if (!"".equals(verificationErrorString)) {
 	      fail(verificationErrorString);
 	    }
-	  }
+	  }*/
 
 	  private boolean isElementPresent(By by) {
 	    try {

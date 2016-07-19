@@ -12,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import prescription.Epres;
@@ -28,13 +29,19 @@ public class Vital {
 	LabSet set = new LabSet(driver);
 	VitalHistory vital = new VitalHistory(driver);
 
-	@Test(enabled=false)
-	public void testDates() throws IOException, InterruptedException {
+	@BeforeTest
+	public void fun() throws IOException, InterruptedException{
 		String s = sr.Searching("974100232885", "infogistic@1"," 974100301865");
 		Thread.sleep(20000);
 
 		driver.manage().window().maximize();
 		Thread.sleep(20000);
+	}
+	
+	
+	
+	@Test(enabled=false)
+	public void testDates() throws IOException, InterruptedException {
 		vital.clickVitalHistory();
 		Thread.sleep(10000);
 		vital.clickAddPatient();
@@ -61,17 +68,19 @@ public class Vital {
 
 	@Test(enabled=false)
 	public void search() throws InterruptedException {
+		vital.clickVitalHistory();
+		Thread.sleep(10000);
 		vital.insertFromDate("06-May-2016");
 		Thread.sleep(1000);
 		vital.visitToDate("08-Jun-2016");
 		Thread.sleep(1000);
 		vital.search();
-		Thread.sleep(1000);
+		Thread.sleep(10000);
 		vital.closeVitalHistory();
 	}
 	
 	
-	@Test
+	@Test(enabled=true)
 	public void testTable() throws IOException, InterruptedException {
 		String s = sr.Searching("974100232885", "infogistic@1"," 974100301865");
 		Thread.sleep(20000);
@@ -90,14 +99,14 @@ public class Vital {
 	}
 	
 	
-	 @AfterClass(alwaysRun = true)
+/*	 @AfterClass(alwaysRun = true)
 	  public void tearDown() throws Exception {
 	    driver.quit();
 		String verificationErrorString = verificationErrors.toString();
 	    if (!"".equals(verificationErrorString)) {
 	      fail(verificationErrorString);
 	    }
-	  }
+	  }*/
 
 	  private boolean isElementPresent(By by) {
 	    try {

@@ -42,7 +42,7 @@ public class medicalCertificate {
 		Thread.sleep(10000);
 		
 		med.insertLeaveDays("12");
-		org.testng.Assert.assertTrue(driver.findElement(By.id("_Eprescription_WAR_CloudClinikportlet_:j_idt186")).isDisplayed());
+		org.testng.Assert.assertTrue(driver.findElement(By.className("ui-overlay-visible")).isDisplayed());
 		Thread.sleep(10000);
 		med.submit();
 		Thread.sleep(1000);

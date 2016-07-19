@@ -23,15 +23,13 @@ public class OrderSet {
 		driver = driv;
 	}
 
-	public void clickNew() {
-		WebDriverWait wait = new WebDriverWait(driver, 50);
-
-		WebElement element = wait
-				.until(ExpectedConditions.elementToBeClickable(By
-						.id("_CCDENTAL_WAR_CCDENTALportlet_:orserSets:j_idt812")));
+	public void clickNew() throws InterruptedException {
+		Thread.sleep(1000);
 
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("document.getElementById('_CCDENTAL_WAR_CCDENTALportlet_:orserSets:j_idt812').click()");
+		
+		//this one gets changed.fine another way
+		js.executeScript("document.getElementById('_CCDENTAL_WAR_CCDENTALportlet_:orserSets:j_idt822').click()");
 	}
 
 	public void setOrderSetName(String name) {
@@ -252,7 +250,7 @@ public class OrderSet {
 
 		li = (ArrayList<WebElement>) ele.findElements(By.tagName("li"));
 		Thread.sleep(1000);
-		li.get(1).click();
+		li.get(0).click();
 
 	}
 

@@ -1,8 +1,5 @@
 package testcasses_eprescription;
 
-
-
-
 import java.io.IOException;
 
 import org.openqa.selenium.Alert;
@@ -33,7 +30,7 @@ public class FavoriteEprescription {
 		Thread.sleep(1000);
 	}
 
-/*	@Test(priority = 1)
+	@Test(priority = 1)
 	public void insertCompDNotes() throws InterruptedException, IOException {
 		Thread.sleep(1000);
 		sr.insertComplaints("Joint Pain");
@@ -140,7 +137,7 @@ public class FavoriteEprescription {
 	  
 		@Test(priority = 8)
 		public void insertMedicineFavorite() throws InterruptedException {
-			Thread.sleep(1000);
+			Thread.sleep(10000);
 			sr.clickFavoriteMedicine();
 			Thread.sleep(1000);
 			sr.insertFavoriteMedicineData("panadol ADVANCE");
@@ -162,9 +159,9 @@ public class FavoriteEprescription {
 			sr.insertDuration(10, 0);
 			Thread.sleep(1000);
 		}
-		*/
 		
-	/*	@Test(priority=9)
+		
+    	@Test(priority=9)
 		public void insertDiet() throws InterruptedException{
 			double str;
 			double result;
@@ -174,20 +171,19 @@ public class FavoriteEprescription {
 			Thread.sleep(10000);
 			sr.clickDosageCalculator();
 			Thread.sleep(1000);
-			result=sr.selectDosageCalType("calculateClarkRule",40,10);
-			Thread.sleep(20000);
-			sr.insertAdultDosage(10);
+			result=sr.selectDosageCalType("Clark'sRule",40,10);
+			System.out.println(result);
+		    sr.insertAdultDosage(10);
 			Thread.sleep(10000);
-			sr.insertDosageWeight(40);
 			str=sr.getCalDoseValue();
 			Thread.sleep(10000);
 			Assert.assertEquals(str,result);
 			Thread.sleep(1000);
 			sr.closeDrugDosageCalculator();
 				
-		}*/
+		}
 		
-/*		@Test(priority=10)
+		@Test(priority=10)
 		public void calculateDosageWeight() throws InterruptedException{
 			Thread.sleep(1000);
 			sr.clickDosageCalculator();
@@ -202,7 +198,7 @@ public class FavoriteEprescription {
 			Thread.sleep(10000);
 			sr.closeDrugDosageCalculator();
 		}
-		*/
+		
 		@Test(priority=11)
 		public void caclulateYoungsRule() throws InterruptedException{
 			double str;

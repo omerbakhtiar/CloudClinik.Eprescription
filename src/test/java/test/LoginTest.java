@@ -30,7 +30,8 @@ public class LoginTest {
 	@Test(priority=1)
 	public void Login() throws IOException, InterruptedException {
 		
-		driver.get("http://10.10.1.129:8080/web/cloudclinik/cc-home");
+		driver.get("http://10.10.1.85:8080/web/cloudclinik/cc-login");
+		Thread.sleep(10000);
 		Login log = new Login(driver);
 		log.RegisterLink();
 		Thread.sleep(5000);
@@ -44,12 +45,12 @@ public class LoginTest {
 	}
 	
 	
-	@Test(priority=2)
+/*	@Test(priority=2)
 	public void NotLogin() throws IOException, InterruptedException{
 		
 		Thread.sleep(5000);
 		//driver = new FirefoxDriver();
-		driver.get("http://10.10.1.69:8080/web/cloudclinik");	
+		driver.get("http://10.10.1.85:8080/web/cloudclinik");	
 		Login log = new Login(driver);
 		log.RegisterLink();
 		Thread.sleep(5000);
@@ -67,18 +68,15 @@ public class LoginTest {
 	 public void forGetPassword() throws IOException, InterruptedException{
 		 
 		 
-		driver.get("http://10.10.1.69:8080/web/cloudclinik");	
+		driver.get("http://10.10.1.85:8080/web/cloudclinik");	
 		Login log = new Login(driver);
 		log.RegisterLink();
 		Thread.sleep(10000);
 		boolean value= driver.findElement(By.linkText("Forgot Password")).isDisplayed();
 		Assert.assertTrue(value);	 
 	 }
-	 
-		@AfterTest@Test()
-		public void Closing(){
-			driver.close();
-		}
+	 */
+	
 	 
 
 		

@@ -17,12 +17,12 @@ public class FavoriteOrder {
 	WebDriver driver = new FirefoxDriver();
 	Epres sr = new Epres(driver);
 	OrderSet order = new OrderSet(driver);
-	  private boolean acceptNextAlert = true;
-	  private StringBuffer verificationErrors = new StringBuffer();
+	private boolean acceptNextAlert = true;
+	private StringBuffer verificationErrors = new StringBuffer();
 
 	@Test(priority = 1)
 	public void complaints() throws IOException, InterruptedException {
-		String s = sr.Searching("974100232885", "infogistic@1"," 974100301865");
+		String s = sr.Searching("974100232885", "infogistic@1", " 974100301865");
 		Thread.sleep(10000);
 		driver.manage().window().maximize();
 		Thread.sleep(1000);
@@ -59,7 +59,7 @@ public class FavoriteOrder {
 		Thread.sleep(1000);
 
 	}
-   
+
 	@Test(priority = 3)
 	public void setProcedureDataFavorite() throws InterruptedException {
 		order.clickFavoriteProcedure();
@@ -75,7 +75,6 @@ public class FavoriteOrder {
 		order.addProcedureNote("testing note for favorite procedure");
 		Thread.sleep(10000);
 	}
-	
 
 	@Test(priority = 4)
 	public void setLab() throws InterruptedException {
@@ -130,48 +129,50 @@ public class FavoriteOrder {
 		order.closeOrderSetDiaglog();
 	}
 	
-	  @Test(priority=6)
- 	  public void applyFavoriteOrderSet() throws InterruptedException{
- 		  order.selectOrderSet();
- 		  Thread.sleep(10000);
- 		  order.applyOrderSet("favorite");
- 		  Thread.sleep(10000);
- 		  order.closeOrderSetMainWindow();
- 		  Thread.sleep(1000);
- 		  driver.close();
- 	  }
-	  private boolean isElementPresent(By by) {
-		    try {
-		      driver.findElement(by);
-		      return true;
-		    } catch (NoSuchElementException e) {
-		      return false;
-		    }
-		  }
+	
+	@Test(priority = 6)
+	public void applyFavoriteOrderSet() throws InterruptedException {
+		order.selectOrderSet();
+		Thread.sleep(10000);
+		//need to change this some issue appearing
+		order.applyOrderSet("favorite");
+		Thread.sleep(10000);
+		order.closeOrderSetMainWindow();
+		Thread.sleep(1000);
+		driver.close();
+	}
 
-		  private boolean isAlertPresent() {
-		    try {
-		      driver.switchTo().alert();
-		      return true;
-		    } catch (NoAlertPresentException e) {
-		      return false;
-		    }
-		  }
+	private boolean isElementPresent(By by) {
+		try {
+			driver.findElement(by);
+			return true;
+		} catch (NoSuchElementException e) {
+			return false;
+		}
+	}
 
-		  private String closeAlertAndGetItsText() {
-		    try {
-		      Alert alert = driver.switchTo().alert();
-		      String alertText = alert.getText();
-		      if (acceptNextAlert) {
-		        alert.accept();
-		      } else {
-		        alert.dismiss();
-		      }
-		      return alertText;
-		    } finally {
-		      acceptNextAlert = true;
-		    }
-		  }
+	private boolean isAlertPresent() {
+		try {
+			driver.switchTo().alert();
+			return true;
+		} catch (NoAlertPresentException e) {
+			return false;
+		}
+	}
 
-     
+	private String closeAlertAndGetItsText() {
+		try {
+			Alert alert = driver.switchTo().alert();
+			String alertText = alert.getText();
+			if (acceptNextAlert) {
+				alert.accept();
+			} else {
+				alert.dismiss();
+			}
+			return alertText;
+		} finally {
+			acceptNextAlert = true;
+		}
+	}
+
 }

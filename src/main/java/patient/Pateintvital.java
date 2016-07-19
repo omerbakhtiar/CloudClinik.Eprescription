@@ -114,7 +114,7 @@ public class Pateintvital {
              Thread.sleep(10000);
              care.clickMed();
              Thread.sleep(10000);
-             care.setFrequency("od: once a day");
+             care.setFrequency("od: once a day",0);
              Thread.sleep(10000);
              care.submit();
 

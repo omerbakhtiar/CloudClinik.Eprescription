@@ -29,9 +29,12 @@ public class OrderSet {
 	}
 
 	public void clickAddNew() throws InterruptedException {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		Thread.sleep(10000);
-		js.executeScript("document.getElementById('_Eprescription_WAR_CloudClinikportlet_:orderSetForm:j_idt75').click()");
+		WebElement ele = driver
+				.findElement(By
+						.cssSelector("button[id^='_Eprescription_WAR_CloudClinikportlet_:orderSetForm:j_idt']"));
+
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", ele);
 
 	}
 
@@ -81,10 +84,13 @@ public class OrderSet {
 	}
 
 	public void clickFavoriteDisease() throws InterruptedException {
-		WebElement element = driver.findElement(By.id("_Eprescription_WAR_CloudClinikportlet_:os_form:diseaseFavoriteBtn"));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-		Thread.sleep(500); 
-	
+		WebElement element = driver
+				.findElement(By
+						.id("_Eprescription_WAR_CloudClinikportlet_:os_form:diseaseFavoriteBtn"));
+		((JavascriptExecutor) driver).executeScript(
+				"arguments[0].scrollIntoView(true);", element);
+		Thread.sleep(500);
+
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		Thread.sleep(10000);
 		js.executeScript("document.getElementById('_Eprescription_WAR_CloudClinikportlet_:os_form:diseaseFavoriteBtn').click()");
@@ -392,10 +398,14 @@ public class OrderSet {
 				.sendKeys(diet);
 	}
 
-	public void clickFavoriteMedicine() {
-		driver.findElement(
-				By.id("_Eprescription_WAR_CloudClinikportlet_:os_form:favoriteMedicationBtn"))
-				.click();
+	public void clickFavoriteMedicine() throws InterruptedException {
+		WebElement element = driver
+				.findElement(By
+						.id("_Eprescription_WAR_CloudClinikportlet_:os_form:favoriteMedicationBtn"));
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].scrollIntoView(true);", element);
+		Thread.sleep(1000);
+		element.click();
 	}
 
 	public void setSearchFavoriteValueMedicine(String medicine)
@@ -441,7 +451,7 @@ public class OrderSet {
 					By.tagName("td"));
 
 			String id = "_Eprescription_WAR_CloudClinikportlet_:orderSetForm:dt_orderset"
-					+ ":" + i + ":j_idt84";
+					+ ":" + i + ":j_idt81";
 			WebElement ele = driver.findElement(By.id(id));
 
 			if (td.get(1).getText().contains(templateName)) {
@@ -516,10 +526,16 @@ public class OrderSet {
 		}
 	}
 
-	public void closeOrderSetMainWindow() {
+	public void closeOrderSetMainWindow() throws InterruptedException {
 
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("document.getElementById('_Eprescription_WAR_CloudClinikportlet_:orderSetForm:j_idt90').click()");
+		WebElement ele = driver
+				.findElement(By
+						.cssSelector("a[id^='_Eprescription_WAR_CloudClinikportlet_:orderSetForm:j_idt']"));
+
+		Thread.sleep(1000);
+
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].scrollIntoView(true);", ele);
 
 	}
 
@@ -655,13 +671,12 @@ public class OrderSet {
 				.findElements(By.tagName("li"));
 
 		for (int i = 0; i < li.size() - 1; i++) {
-			
-			
+
 			span = (ArrayList<WebElement>) li.get(i).findElements(
 					By.tagName("span"));
 			Thread.sleep(1000);
 			span.get(1).click();
-			
+
 		}
 	}
 
