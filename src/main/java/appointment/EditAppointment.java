@@ -16,10 +16,12 @@ public class EditAppointment {
 		driver = driv;
 	}
 
-	public void insertPurposeOfVisit(String value) {
-		driver.findElement(
-				By.id("_AppointmentCalender_WAR_CloudClinikportlet_:editPatientAppointment:ApptSubject"))
-				.sendKeys(value);
+	public void insertPurposeOfVisit(String value) throws InterruptedException {
+		WebElement ele=driver.findElement(
+				By.id("_AppointmentCalender_WAR_CloudClinikportlet_:editPatientAppointment:ApptSubject"));
+		ele.clear();
+		Thread.sleep(1000);
+		ele.sendKeys(value);
 	}
 
 	public void clickProvider() throws InterruptedException {
