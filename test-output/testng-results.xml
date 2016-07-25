@@ -1,49 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="9" passed="9">
+<testng-results skipped="0" failed="0" total="3" passed="3">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="305842" started-at="2016-07-19T19:24:10Z" finished-at="2016-07-19T19:29:16Z">
+  <suite name="Default suite" duration-ms="64453" started-at="2016-07-25T12:01:30Z" finished-at="2016-07-25T12:02:34Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="305842" started-at="2016-07-19T19:24:10Z" finished-at="2016-07-19T19:29:16Z">
-      <class name="testcasses_dentalcare.MultipleDiease">
-        <test-method status="PASS" signature="orderSet()[pri:0, instance:testcasses_dentalcare.MultipleDiease@50ad3bc1]" name="orderSet" duration-ms="92888" started-at="2016-07-20T00:24:10Z" finished-at="2016-07-20T00:25:43Z">
+    <test name="Default test" duration-ms="64453" started-at="2016-07-25T12:01:30Z" finished-at="2016-07-25T12:02:34Z">
+      <class name="appointment_test.Payment">
+        <test-method status="PASS" signature="login()[pri:0, instance:appointment_test.Payment@209da20d]" name="login" duration-ms="25832" started-at="2016-07-25T17:01:30Z" finished-at="2016-07-25T17:01:56Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- orderSet -->
-        <test-method status="PASS" signature="setDoctorNotes()[pri:0, instance:testcasses_dentalcare.MultipleDiease@50ad3bc1]" name="setDoctorNotes" duration-ms="21484" started-at="2016-07-20T00:25:43Z" finished-at="2016-07-20T00:26:04Z">
+        </test-method> <!-- login -->
+        <test-method status="PASS" signature="checkAppointment()[pri:0, instance:appointment_test.Payment@209da20d]" name="checkAppointment" duration-ms="10579" started-at="2016-07-25T17:01:56Z" finished-at="2016-07-25T17:02:06Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setDoctorNotes -->
-        <test-method status="PASS" signature="setPrimaryDiease()[pri:0, instance:testcasses_dentalcare.MultipleDiease@50ad3bc1]" name="setPrimaryDiease" duration-ms="36732" started-at="2016-07-20T00:26:04Z" finished-at="2016-07-20T00:26:41Z">
+        </test-method> <!-- checkAppointment -->
+        <test-method status="PASS" signature="editAppointment()[pri:0, instance:appointment_test.Payment@209da20d]" name="editAppointment" duration-ms="28017" started-at="2016-07-25T17:02:06Z" finished-at="2016-07-25T17:02:34Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setPrimaryDiease -->
-        <test-method status="PASS" signature="setProcedure()[pri:0, instance:testcasses_dentalcare.MultipleDiease@50ad3bc1]" name="setProcedure" duration-ms="23678" started-at="2016-07-20T00:26:41Z" finished-at="2016-07-20T00:27:05Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setProcedure -->
-        <test-method status="PASS" signature="setAdditionalDiagnosis()[pri:0, instance:testcasses_dentalcare.MultipleDiease@50ad3bc1]" name="setAdditionalDiagnosis" duration-ms="4632" started-at="2016-07-20T00:27:05Z" finished-at="2016-07-20T00:27:09Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setAdditionalDiagnosis -->
-        <test-method status="PASS" signature="selectTeeth()[pri:0, instance:testcasses_dentalcare.MultipleDiease@50ad3bc1]" name="selectTeeth" duration-ms="43396" started-at="2016-07-20T00:27:09Z" finished-at="2016-07-20T00:27:53Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- selectTeeth -->
-        <test-method status="PASS" signature="setTeeth()[pri:0, instance:testcasses_dentalcare.MultipleDiease@50ad3bc1]" name="setTeeth" duration-ms="20466" started-at="2016-07-20T00:27:53Z" finished-at="2016-07-20T00:28:13Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setTeeth -->
-        <test-method status="PASS" signature="selectMedicine()[pri:0, instance:testcasses_dentalcare.MultipleDiease@50ad3bc1]" name="selectMedicine" duration-ms="52204" started-at="2016-07-20T00:28:13Z" finished-at="2016-07-20T00:29:05Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- selectMedicine -->
-        <test-method status="PASS" signature="save()[pri:0, instance:testcasses_dentalcare.MultipleDiease@50ad3bc1]" name="save" duration-ms="10312" started-at="2016-07-20T00:29:05Z" finished-at="2016-07-20T00:29:16Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- save -->
-      </class> <!-- testcasses_dentalcare.MultipleDiease -->
+        </test-method> <!-- editAppointment -->
+      </class> <!-- appointment_test.Payment -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

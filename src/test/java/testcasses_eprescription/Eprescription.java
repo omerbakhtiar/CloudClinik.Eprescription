@@ -1,4 +1,4 @@
-package testcasses_eprescription;
+/*package testcasses_eprescription;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -36,7 +36,7 @@ public class Eprescription {
 
 	}
 
-	/*@Test(priority = 1)
+	@Test(priority = 1)
 	public void verifyMrNumber() throws IOException, InterruptedException {
 		Thread.sleep(20000);
 		String s = sr.Searching();
@@ -59,8 +59,8 @@ public class Eprescription {
 		his.clickSoap();
 		
 	}
-*/
-	/*
+
+	
 	 * @Test(priority=1) public void verifyMrNumber() throws IOException,
 	 * InterruptedException { Thread.sleep(20000); String s = sr.Searching();
 	 * Assert.assertTrue(s.contains("9213061292")); Thread.sleep(20000);
@@ -73,16 +73,16 @@ public class Eprescription {
 	 * }
 	 * 
 	 * 
-	 * /* @Test(priority=1) public void verifyMrNumber() throws IOException,
+	 *  @Test(priority=1) public void verifyMrNumber() throws IOException,
 	 * InterruptedException { Thread.sleep(20000); String s = sr.Searching();
 	 * Assert.assertTrue(s.contains("9213061292")); Thread.sleep(20000); }
 	 * 
 	 * @Test(priority=2) public void changeInsurance() throws IOException,
 	 * InterruptedException { sr.selectInsurance(); Thread.sleep(10000);
 	 * sr.selectInsuranceOption(); Thread.sleep(20000); }
-	 */
+	 
 
-/*	  @Test(priority=1)
+	  @Test(priority=1)
 	  public void insertFavoriteSearchDiease() throws InterruptedException, IOException{
 			String s = sr.Searching();
 			Thread.sleep(20000);
@@ -110,26 +110,26 @@ public class Eprescription {
 			ep.closeFavoriteDieasePopUp();
 			Thread.sleep(1000);
 		  
-	  }*/
+	  }
 	
 	  @Test(priority=3)
 	  public void insertManualProcedure() throws InterruptedException, IOException{
-/*		String s = sr.Searching();
+		String s = sr.Searching();
 		Thread.sleep(20000);
-		driver.manage().window().maximize();*/
-		/*sr.addProcedureTreatmentButton();
+		driver.manage().window().maximize();
+		sr.addProcedureTreatmentButton();
 		Thread.sleep(1000);
 		sr.addManualProcedureData("GEN07", 0);
 		Thread.sleep(1000);
 		sr.addProcedureNotes("testing notes", 0);
 		Thread.sleep(1000);
-		sr.addProcedureQuantity(10,0);*/
+		sr.addProcedureQuantity(10,0);
 		  
 	  }
 	
 	  
 	  
-	/*  @Test(priority=4)
+	  @Test(priority=4)
 	  public void insertFavoriteProcedure() throws InterruptedException, IOException{
 		sr.addFavoriteProcedureButton();
 		Thread.sleep(1000);
@@ -146,8 +146,8 @@ public class Eprescription {
 		sr.addProcedureQuantity(10,1);
 		  
 	  }
-	*/
-	/*  @Test(priority=5)
+	
+	  @Test(priority=5)
 	  public void insertLabManual() throws InterruptedException, IOException{
 		 // 48378-4 
 		  sr.Searching();
@@ -177,7 +177,7 @@ public class Eprescription {
 		  sr.closeFavoriteLabPopUp();
 		  Thread.sleep(7000);
 		  sr.insertLabInstruction("test",1);
-	  }*/
+	  }
 	  
 	  @Test(priority=7)
 	  public void insertLabMedicine() throws InterruptedException, IOException{
@@ -240,4 +240,4 @@ public class Eprescription {
 
 
 
-}
+*/

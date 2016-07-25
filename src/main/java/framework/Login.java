@@ -29,7 +29,7 @@ public class Login {
 	public void Logincredentials(String id, String pass)
 			throws InterruptedException {
 		
-		driver.get("http://10.10.1.130:8080/web/cloudclinik/cc-login");
+		driver.get("http://10.10.1.129:8080/web/cloudclinik/cc-login");
 		Thread.sleep(10000);
 		
 		idn.sendKeys(id);

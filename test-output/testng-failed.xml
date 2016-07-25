@@ -3,13 +3,11 @@
 <suite name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="testcasses_dentalcare.MultipleDiease">
+      <class name="appointment_test.Payment">
         <methods>
-          <include name="setTeeth"/>
-          <include name="save"/>
-          <include name="selectMedicine"/>
+          <include name="editAppointment"/>
         </methods>
-      </class> <!-- testcasses_dentalcare.MultipleDiease -->
+      </class> <!-- appointment_test.Payment -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

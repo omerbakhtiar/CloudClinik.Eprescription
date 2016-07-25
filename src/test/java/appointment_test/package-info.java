@@ -5,4 +5,4 @@
  * @author bakhtiaro
  *
  */
-package appointment;
+package appointment_test;

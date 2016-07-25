@@ -37,7 +37,7 @@ public class Bug {
          Thread.sleep(10000);
          String message=driver.findElement(By.xpath(".//*[@id='header']/h2")).getText();
         
-         //Assert.assertTrue(!message.contains("Appointment / Find Doctor"));
+         //Assert.assertTrue(!message.contains("appointment / Find Doctor"));
   
          Assert.assertTrue(driver.findElement(By.className("cc_DesktopNavigation_contactUs")).isDisplayed());
   

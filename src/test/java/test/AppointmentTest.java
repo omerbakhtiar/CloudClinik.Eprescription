@@ -63,7 +63,7 @@ public class AppointmentTest {
 /*	@Test(priority = 2)
 	public void searchNumber() throws IOException, InterruptedException {
 
-		Appointment app = new Appointment(driver);
+		appointment app = new appointment(driver);
 		Pateintvital vi = new Pateintvital(driver);
 		vi.searchPatient();
 		Helper help = new Helper(driver);
@@ -87,7 +87,7 @@ public class AppointmentTest {
 	@Test(priority = 3)
 	public void searchMRNumber() throws IOException, InterruptedException {
 
-		Appointment app = new Appointment(driver);
+		appointment app = new appointment(driver);
 		Login log = new Login(driver);
 		Pateintvital vi = new Pateintvital(driver);
 		Helper help = new Helper(driver);
@@ -115,7 +115,7 @@ public class AppointmentTest {
 	@Test(priority = 4)
 	public void searchFileNumber() throws IOException, InterruptedException {
 
-		Appointment app = new Appointment(driver);
+		appointment app = new appointment(driver);
 		Pateintvital vi = new Pateintvital(driver);
 		Helper help = new Helper(driver);
 		help.WindowHandles();
@@ -144,7 +144,7 @@ public class AppointmentTest {
 	@Test(priority = 5)
 	public void searchID() throws IOException, InterruptedException {
 
-		Appointment app = new Appointment(driver);
+		appointment app = new appointment(driver);
 		Pateintvital vi = new Pateintvital(driver);
 		Helper help = new Helper(driver);
 		help.WindowHandles();
@@ -173,7 +173,7 @@ public class AppointmentTest {
 	@Test(priority = 6)
 	public void searchAdvance() throws IOException, InterruptedException {
 
-		Appointment app = new Appointment(driver);
+		appointment app = new appointment(driver);
 		Pateintvital vi = new Pateintvital(driver);
 		Helper help = new Helper(driver);
 		help.WindowHandles();
@@ -205,7 +205,7 @@ public class AppointmentTest {
 	@Test(priority = 7)
 	public void invalidMr() throws IOException, InterruptedException {
 
-		Appointment app = new Appointment(driver);
+		appointment app = new appointment(driver);
 		Pateintvital vi = new Pateintvital(driver);
 		Helper help = new Helper(driver);
 		help.WindowHandles();
