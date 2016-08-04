@@ -14,32 +14,25 @@ import org.testng.annotations.Test;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.AfterTest;
 
+import framework.Config;
 import framework.Login;
 
-public class LoginTest {
+public class LoginTest extends Config {
 
-	WebDriver driver;
 	private ArrayList<WebElement> divs = new ArrayList<WebElement>();
 	private ArrayList<WebElement> subdivs = new ArrayList<WebElement>();
 
 	@BeforeClass
 	public void beforeTest() {
-	driver = new FirefoxDriver();
 	}
 
 	@Test(priority=1)
 	public void Login() throws IOException, InterruptedException {
-		
-		driver.get("http://10.10.1.85:8080/web/cloudclinik/cc-login");
+		driver.get("http://10.10.1.130:8080/web/cloudclinik/cc-login");
 		Thread.sleep(10000);
 		Login log = new Login(driver);
-		log.RegisterLink();
 		Thread.sleep(5000);
-		log.Logincredentials("9213053774", "infogistic1");
-         Thread.sleep(50000);
-		WebElement condition = driver
-				.findElement(By.id("_PatientHeader_WAR_CloudClinikportlet_:header_form:patient_header"));
-		Assert.assertTrue(condition.isDisplayed());
+		log.Logincredentials("974100232895", "infogistic@1");
 		Thread.sleep(5000);
 		
 	}

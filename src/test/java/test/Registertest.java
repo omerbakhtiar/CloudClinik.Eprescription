@@ -22,7 +22,7 @@ import framework.Register;
 public class Registertest {
 	
 	 private WebDriver driver;
-	 private static String  url = "http://10.10.1.85:8080/web/cloudclinik/register";
+	 private static String  url = "http://10.10.1.129:8080/web/cloudclinik/register";
 
 	@BeforeClass
 	  public void beforeClass() {

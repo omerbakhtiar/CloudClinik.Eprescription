@@ -38,11 +38,12 @@ public class AppointmentTest {
 		log.Logincredentials("974100232895", "infogistic@1");
 		Thread.sleep(10000);
 		help.maximize(driver);
+	/*	help.maximize(driver);
 		Thread.sleep(4000);
 		app.clickClinicDropDown();
 		Thread.sleep(7000);
 		app.selectClinick("Noha Abdul Monem Clinic");
-		Thread.sleep(1000);
+		Thread.sleep(1000);*/
 		//app.clickPreviousAppoint();
 		/*Thread.sleep(10000);
 		boolean res = app.getTotalSizePrevious(10);
@@ -72,29 +73,27 @@ public class AppointmentTest {
 		Assert.assertEquals(dt[1].getAvailable(), data[2].getTotal());	
 	}*/
 	
-	/*@Test(priority=4)
+	@Test(priority=4)
 	public void doAppointment() throws InterruptedException{
-		Thread.sleep(1000);
-		app.clickOnTodayAppointment();
-		Thread.sleep(10000);
-		app.doAppointment("10:00 AM - 10:30 AM");
+		app.doAppointment("09:00 AM - 09:30 AM",0);
 		Thread.sleep(10000);
 		st.searchByName("test");
 		Thread.sleep(1000);
 		st.clickSearch();
-		Thread.sleep(1000);
-		st.insertPurposeOfVisit("nausia");
-		Thread.sleep(2000);
+		Thread.sleep(10000);
 		st.selectPatient("974100301864");
-	}*/
+		Thread.sleep(10000);
+		Assert.assertFalse(app.verifyErrorMessage("Sorry! This patient already has an appointment with this clinic."));
+	
+	}
 	
 	
-	@Test(priority=5)
+/*	@Test(priority=5)
 	public void checkDisabledAppointment() throws InterruptedException{
 		Thread.sleep(10000);
-		app.clickDisabledBookApp(3);
+		app.clickDisabledBookApp(3,10);
 		Thread.sleep(9000);
 		ele=app.BookedMen(3);
 		Thread.sleep(1000);
-	}
+	}*/
 }

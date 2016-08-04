@@ -1,4 +1,5 @@
 package framework;
+
 import helper.Helper;
 
 import java.io.FileInputStream;
@@ -12,7 +13,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-
 
 public class ReadExcel {
 	public FileInputStream fis = null;
@@ -48,8 +48,8 @@ public class ReadExcel {
 	public static ArrayList<ReadExcel> lst = new ArrayList<ReadExcel>();
 
 	public ReadExcel(WebDriver driver) throws IOException {
-		///CloudClinik.Eprescription/src/main/java/testdata
-		path =  "D:\\cloudclinik-workspace\\CloudClinik.Eprescription\\src\\testdata.xlsx";
+		// /CloudClinik.Eprescription/src/main/java/testdata
+		path = "C:\\Users\\bakhtiaro\\workspace\\CloudClinik.Eprescription\\src\\testdata.xlsx";
 		System.out.println("file path :: " + path);
 		fis = new FileInputStream(path);
 		workbook = new XSSFWorkbook(fis);
@@ -123,13 +123,12 @@ public class ReadExcel {
 		read.email = read.getCellData("LoginTest", 21, index);
 		lst.add(read);
 	}
-  
-	
-	
+
 	public void Call(int index) throws Exception {
 
+		Thread.sleep(10000);
 		DatabseConnection dao = new DatabseConnection();
-		Helper help =new Helper(driver);
+		Helper help = new Helper(driver);
 		Thread.sleep(5000);
 		Register first = new Register(driver);
 		first.SelectTitle(lst.get(index).Title);
@@ -158,29 +157,66 @@ public class ReadExcel {
 		dao.readDataBase();
 		help.WindowHandles();
 		Thread.sleep(50000);
-		driver.findElement(By.linkText("Enter account activation code")).click();
+		driver.findElement(By.linkText("Enter account activation code"))
+				.click();
 		Thread.sleep(50000);
 		help.WindowHandles();
-		driver.findElement(By.id("_SignUp_WAR_CloudClinikportlet_:activationCodeDlgForm:ActivationCode")).sendKeys(DatabseConnection.activation_cod);
-		driver.findElement(By.id("_SignUp_WAR_CloudClinikportlet_:activationCodeDlgForm:CloudClinicNo")).sendKeys(DatabseConnection.cloudclinik_no);
-        Thread.sleep(50000);	
-        driver.findElement(By.id("_SignUp_WAR_CloudClinikportlet_:activationCodeDlgForm:SubmitButton")).click();
-        
-	
+		driver.findElement(
+				By.id("_SignUp_WAR_CloudClinikportlet_:activationCodeDlgForm:ActivationCode"))
+				.sendKeys(DatabseConnection.activation_cod);
+		driver.findElement(
+				By.id("_SignUp_WAR_CloudClinikportlet_:activationCodeDlgForm:CloudClinicNo"))
+				.sendKeys(DatabseConnection.cloudclinik_no);
+		Thread.sleep(50000);
+		driver.findElement(
+				By.id("_SignUp_WAR_CloudClinikportlet_:activationCodeDlgForm:SubmitButton"))
+				.click();
+
 	}
 
-	
-	  public static void main(String[] args) throws Exception {
-	  
-	   //ReadExcel read = new ReadExcel(driver); read.ReadData(1);
-	   //read.ReadData(2);
-			DatabseConnection dao = new DatabseConnection();
-			dao.readDataBase();
-			System.out.println(DatabseConnection.activation_cod);
-			System.out.println(DatabseConnection.cloudclinik_no);
-		       
-	  
-	  }
-	 
+	public void callForRegister(int index) throws InterruptedException,
+			IOException {
+		Thread.sleep(10000);
+		DatabseConnection dao = new DatabseConnection();
+		Helper help = new Helper(driver);
+		Thread.sleep(5000);
+		Register first = new Register(driver);
+		first.SelectTitle(lst.get(index).Title);
+		first.SelectGender();
+		first.SetFirstName(lst.get(index).FirstNam);
+		first.SetLastName(lst.get(index).Last);
+		first.setNationality(lst.get(index).National);
+		first.SetAge(lst.get(index).Age);
+		first.SetUnit(lst.get(index).Unit);
+		first.setCountry(lst.get(index).country);
+		first.selectState(lst.get(index).state);
+		first.selectCity(lst.get(index).City);
+		first.setId(lst.get(index).ID);
+		first.setBuildingNumber(lst.get(index).BuildNm);
+		first.setStreetAdress(lst.get(index).SAddresss);
+		first.setZoneNumber(lst.get(index).Znumber);
+		first.setMobileNumber(lst.get(index).prMobile);
+		first.setOtherMobile(lst.get(index).otrnum);
+		first.setSecondaryMoblie(lst.get(index).Secon);
+		first.setEmail(lst.get(index).email);
+		Thread.sleep(5000);
+		driver.findElement(
+				By.id("_SignUp_WAR_CloudClinikportlet_:form:AssitantSignUpBtn"))
+				.click();
+		Thread.sleep(5000);
+		help.WindowHandles();
+		Thread.sleep(50000);
+	}
+
+	public static void main(String[] args) throws Exception {
+
+		// ReadExcel read = new ReadExcel(driver); read.ReadData(1);
+		// read.ReadData(2);
+		DatabseConnection dao = new DatabseConnection();
+		dao.readDataBase();
+		System.out.println(DatabseConnection.activation_cod);
+		System.out.println(DatabseConnection.cloudclinik_no);
+
+	}
 
 }

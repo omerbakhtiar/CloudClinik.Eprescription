@@ -34,4 +34,12 @@ public class PaymentReciept {
 				.findElement(By.tagName("span")).click();
 	}
 
+	public void dialogYesButton() throws InterruptedException {
+		driver.findElement(
+				By.cssSelector("button[id^='_oneViewApptCalendar_WAR_CloudClinikportlet_:duplicateBillingConfirmationForm:j_idt']"))
+				.click();
+
+		Thread.sleep(1000);
+
+	}
 }

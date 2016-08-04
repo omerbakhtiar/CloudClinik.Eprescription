@@ -4,8 +4,11 @@ import java.util.ArrayList;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -264,7 +267,7 @@ public class Appoints {
 		WebElement div = driver.findElement(By
 				.id("_AppointmentCalender_WAR_CloudClinikportlet_:form:app:"
 						+ index + ":appCalenderManu"));
-		Thread.sleep(1000);
+		Thread.sleep(10000);
 
 		li = (ArrayList<WebElement>) div.findElement(By.tagName("ul"))
 				.findElements(By.tagName("li"));
@@ -292,7 +295,8 @@ public class Appoints {
 		return li;
 	}
 
-	public void clickDisabledBookApp(int index) throws InterruptedException {
+	public void clickDisabledBookApp(int index, int option)
+			throws InterruptedException {
 		WebElement tbody = driver
 				.findElement(
 						By.id("_AppointmentCalender_WAR_CloudClinikportlet_:form:app"))
@@ -303,7 +307,23 @@ public class Appoints {
 
 		td = (ArrayList<WebElement>) row.get(index).findElements(
 				By.tagName("td"));
-		td.get(10).click();
+		td.get(option).click();
+	}
+
+	public String getInsuranceName(int index) {
+		WebElement tbody = driver
+				.findElement(
+						By.id("_AppointmentCalender_WAR_CloudClinikportlet_:form:app"))
+				.findElement(By.tagName("table"))
+				.findElement(By.tagName("tbody"));
+
+		row = (ArrayList<WebElement>) tbody.findElements(By.tagName("tr"));
+
+		td = (ArrayList<WebElement>) row.get(index).findElements(
+				By.tagName("td"));
+		
+		return td.get(7).findElement(By.tagName("a")).getText();
+
 	}
 
 	public boolean checkElementState(ArrayList<WebElement> li, int index) {
@@ -448,18 +468,24 @@ public class Appoints {
 	}
 
 	public boolean verifyErrorMessage(String message) {
-		WebElement div = driver
+
+		if (driver
 				.findElement(
 						By.id("_AppointmentCalender_WAR_CloudClinikportlet_:form:allMessages"))
-				.findElement(By.tagName("div")).findElement(By.tagName("ul"))
-				.findElement(By.tagName("li"));
+				.findElements(By.tagName("div")).size() != 0) {
 
-		if (div.findElement(By.tagName("span")).getText().contains(message)) {
+			WebElement div = driver
+					.findElement(
+							By.id("_AppointmentCalender_WAR_CloudClinikportlet_:form:allMessages"))
+					.findElement(By.tagName("div"))
+					.findElement(By.tagName("ul"))
+					.findElement(By.tagName("li"));
+
+			div.findElement(By.tagName("span")).getText().contains(message);
 			return true;
 
 		} else {
 			return false;
-
 		}
 
 	}
@@ -482,6 +508,78 @@ public class Appoints {
 		} else {
 			return false;
 		}
+	}
+
+	public void registerPatient() throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, 120);
+		WebElement ele = driver.findElement(By.className("reg-new-patient"));
+		ele.click();
+
+	}
+
+	public void pressAppointment(int index) {
+		driver.findElement(
+				By.id("_AppointmentCalender_WAR_CloudClinikportlet_:form:app:"
+						+ index + ":dynaButton")).click();
+	}
+
+	public void clickOnOk() {
+		driver.findElement(
+				By.id("_SignUp_WAR_CloudClinikportlet_:assistantConfirmation:okBtn"))
+				.click();
+	}
+
+	public void addInsuranceEnrolement() {
+		driver.findElement(
+				By.cssSelector("button[id^='_AppointmentCalender_WAR_CloudClinikportlet_:patientInsuranceForm:j_idt']"))
+				.click();
+	}
+
+	public void clickInsuranceCompany() {
+		divs = (ArrayList<WebElement>) driver
+				.findElement(
+						By.id("_AppointmentCalender_WAR_CloudClinikportlet_:patientInsuranceForm:InsuranceCompany"))
+				.findElements(By.tagName("div"));
+
+		divs.get(2).findElement(By.tagName("span")).click();
+	}
+
+	public void selectInsurance(String data) throws InterruptedException {
+		row = (ArrayList<WebElement>) driver
+				.findElement(
+						By.id("_AppointmentCalender_WAR_CloudClinikportlet_:insuranceCompanyFrm:selectCompanyName"))
+				.findElements(By.tagName("tr"));
+
+		Thread.sleep(1000);
+
+		for (int i = 0; i < row.size(); i++) {
+
+			td = (ArrayList<WebElement>) row.get(i).findElements(
+					By.tagName("td"));
+
+			System.out.println(td.get(1).findElement(By.tagName("label"))
+					.getText());
+
+			if (td.get(1).findElement(By.tagName("label")).getText()
+					.contains(data)) {
+
+				divs = (ArrayList<WebElement>) td.get(0)
+						.findElement(By.tagName("div"))
+						.findElements(By.tagName("div"));
+
+				Thread.sleep(10000);
+				WebElement ele = divs.get(1).findElement(By.tagName("span"));
+				JavascriptExecutor js = (JavascriptExecutor) driver;
+				js.executeScript("arguments[0].click();", ele);
+
+				break;
+
+			} else {
+
+				System.out.println("not found insurance company");
+			}
+		}
+
 	}
 
 }

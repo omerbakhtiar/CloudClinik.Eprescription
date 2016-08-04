@@ -20,45 +20,39 @@ public class SearchPatient {
 	}
 
 	public void searchById(String data) {
-		driver.findElement(
-				By.id("_AppointmentCalender_WAR_CloudClinikportlet_:SearchCNIC"))
+		driver.findElement(By.cssSelector("input[id$=':SearchCNIC']"))
 				.sendKeys(data);
 	}
 
 	public void searchByMr(String Mr) {
-		driver.findElement(
-				By.id("_AppointmentCalender_WAR_CloudClinikportlet_:SearchCloudClinicNO"))
+		driver.findElement(By.cssSelector("input[id$=':SearchCloudClinicNO']"))
 				.sendKeys(Mr);
+
 	}
 
 	public void searchByName(String name) {
-		driver.findElement(
-				By.id("_AppointmentCalender_WAR_CloudClinikportlet_:SearchPatientName"))
+		driver.findElement(By.cssSelector("input[id$=':SearchPatientName']"))
 				.sendKeys(name);
 	}
 
 	public void searchByNumber(int number) {
-		driver.findElement(
-				By.id("_AppointmentCalender_WAR_CloudClinikportlet_:SearchContactNumber"))
+		driver.findElement(By.cssSelector("input[id$=':SearchContactNumber']"))
 				.sendKeys(String.valueOf(number));
 	}
 
 	public void searchByPatientFileNo(int number) {
-		driver.findElement(
-				By.id("_AppointmentCalender_WAR_CloudClinikportlet_:SearchFileNo"))
+		driver.findElement(By.cssSelector("input[id$=':SearchFileNo']"))
 				.sendKeys(String.valueOf(number));
 	}
 
 	public void insertPurposeOfVisit(String data) {
-		driver.findElement(
-				By.id("_AppointmentCalender_WAR_CloudClinikportlet_:ApptSubject"))
+		driver.findElement(By.cssSelector("input[id$=':ApptSubject']"))
 				.sendKeys(data);
 	}
 
 	public void selectProvider(String name) {
-		WebElement ele = driver
-				.findElement(By
-						.id("_AppointmentCalender_WAR_CloudClinikportlet_:ProviderName"));
+		WebElement ele = driver.findElement(By
+				.cssSelector("input[id$=':ProviderName']"));
 
 		divs = (ArrayList<WebElement>) ele.findElements(By.tagName("div"));
 		divs.get(2).findElement(By.tagName("span")).click();
@@ -66,8 +60,7 @@ public class SearchPatient {
 	}
 
 	public void changeDurationHour(int size) throws InterruptedException {
-		driver.findElement(
-				By.id("_AppointmentCalender_WAR_CloudClinikportlet_:timeTo_input"))
+		driver.findElement(By.cssSelector("input[id$=':timeTo_input']"))
 				.sendKeys("");
 		Thread.sleep(1000);
 
@@ -89,8 +82,7 @@ public class SearchPatient {
 
 	public void changeDurationMinute(double Minute, int index)
 			throws InterruptedException {
-		driver.findElement(
-				By.id("_AppointmentCalender_WAR_CloudClinikportlet_:timeTo_input"))
+		driver.findElement(By.cssSelector("input[id$=':timeTo_input']"))
 				.sendKeys("");
 		Thread.sleep(1000);
 
@@ -120,14 +112,12 @@ public class SearchPatient {
 	}
 
 	public void insertDuration(String time) throws InterruptedException {
-		driver.findElement(
-				By.id("_AppointmentCalender_WAR_CloudClinikportlet_:timeTo_input"))
+		driver.findElement(By.cssSelector("input[id$=':timeTo_input']"))
 				.clear();
 
 		Thread.sleep(1000);
 
-		driver.findElement(
-				By.id("_AppointmentCalender_WAR_CloudClinikportlet_:timeTo_input"))
+		driver.findElement(By.cssSelector("input[id$=':timeTo_input']"))
 				.sendKeys((time));
 	}
 
@@ -140,7 +130,7 @@ public class SearchPatient {
 	public void selectPatient(String mrNumber) throws InterruptedException {
 		WebElement tbody = driver
 				.findElement(
-						By.cssSelector("div[id^='_AppointmentCalender_WAR_CloudClinikportlet_:searchtb']"))
+						By.cssSelector("div[id$='_WAR_CloudClinikportlet_:searchForm:searchtbl']"))
 				.findElement(By.tagName("table"))
 				.findElement(By.tagName("tbody"));
 
@@ -162,6 +152,20 @@ public class SearchPatient {
 			}
 
 		}
+	}
+
+	public void clickClosePatient() {
+		driver.findElement(
+				By.id("input[id$=_CloudClinikportlet_:searchpatient"))
+				.findElement(By.tagName("div")).findElement(By.tagName("a"))
+				.findElement(By.tagName("span")).click();
+
+	}
+
+	public void clickSelectPatient() {
+		driver.findElement(
+				By.cssSelector("button[id^='_oneViewApptCalendar_WAR_CloudClinikportlet_:searchForm:j_idt']"))
+				.click();
 	}
 
 }

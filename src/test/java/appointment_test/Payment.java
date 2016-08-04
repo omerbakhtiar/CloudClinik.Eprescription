@@ -6,6 +6,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -20,6 +24,7 @@ import appointment.PaymentReciept;
 import appointment.RegularInvocing;
 import appointment.SearchPatient;
 import framework.Login;
+import framework.ReadExcel;
 
 public class Payment {
 	WebDriver driver = new FirefoxDriver();
@@ -42,13 +47,14 @@ public class Payment {
 		log.Logincredentials("974100232895", "infogistic@1");
 		Thread.sleep(10000);
 		help.maximize(driver);
+		Thread.sleep(10000);
   }
   
   @Test(priority=2)
   public void checkAppointment() throws InterruptedException{
-	    app.clickDisabledBookApp(4);
+	    app.clickDisabledBookApp(4,10);
 		Thread.sleep(10000);
-		/*app.clickOnPayment(0);
+		app.clickOnPayment(0);
 		Thread.sleep(1000);
 		regular.clickPaymentMode();
 		Thread.sleep(1000);
@@ -65,7 +71,7 @@ public class Payment {
 		Assert.assertTrue(regular.verifyName("Mr. test  user"));
 		regular.clickSave();
 		Thread.sleep(6000);
-		pay.closePaymentReciept();*/
+		pay.closePaymentReciept();
 		
 	}
   
@@ -90,6 +96,55 @@ public class Payment {
   }
   
   
+   @Test(priority=4)
+   public void register() throws InterruptedException, IOException{
+	   app.bookAppointmentMenu(0,0);
+	   Thread.sleep(7000);
+	   st.clickClosePatient();
+	   Thread.sleep(10000);
+	   driver.navigate().refresh();
+	   Thread.sleep(10000);
+	   app.bookAppointmentMenu(0,0);
+	   Thread.sleep(1000);
+	   app.registerPatient();
+	   ReadExcel excel=new ReadExcel(driver);
+       excel.ReadData(2);
+       Thread.sleep(10000);
+       excel.callForRegister(0);
+   }
+   
+   
   
-  
+	private boolean isElementPresent(By by) {
+		try {
+			driver.findElement(by);
+			return true;
+		} catch (NoSuchElementException e) {
+			return false;
+		}
+	}
+
+	private boolean isAlertPresent() {
+		try {
+			driver.switchTo().alert();
+			return true;
+		} catch (NoAlertPresentException e) {
+			return false;
+		}
+	}
+
+	private String closeAlertAndGetItsText() {
+		try {
+			Alert alert = driver.switchTo().alert();
+			String alertText = alert.getText();
+			if (acceptNextAlert) {
+				alert.accept();
+			} else {
+				alert.dismiss();
+			}
+			return alertText;
+		} finally {
+			acceptNextAlert = true;
+		}
+	}
 }

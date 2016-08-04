@@ -3,11 +3,15 @@
 <suite name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="appointment_test.Payment">
+      <class name="appointment_test.Confirmed">
         <methods>
-          <include name="editAppointment"/>
+          <include name="checkInArrived"/>
+          <include name="checkInClinick"/>
+          <include name="login"/>
+          <include name="checkConfirmed"/>
+          <include name="checkPatientAlreadyAppointment"/>
         </methods>
-      </class> <!-- appointment_test.Payment -->
+      </class> <!-- appointment_test.Confirmed -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

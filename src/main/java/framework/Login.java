@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -18,18 +19,25 @@ public class Login {
 	@FindBy(id = "_58_password")
 	private WebElement password;
 	
-	
+
 
 	public Login(WebDriver driver1) throws IOException {
-
 		this.driver = driver1;
 		PageFactory.initElements(driver, this);
 	}
 
+	public Login() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public  WebDriver getDriver(){
+		return  driver = new FirefoxDriver();
+	}
+	
+	
 	public void Logincredentials(String id, String pass)
 			throws InterruptedException {
 		
-		driver.get("http://10.10.1.129:8080/web/cloudclinik/cc-login");
 		Thread.sleep(10000);
 		
 		idn.sendKeys(id);

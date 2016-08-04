@@ -24,7 +24,7 @@ public class DatabseConnection {
 	      Class.forName("com.mysql.jdbc.Driver");
 	      // Setup the connection with the DB
 	      connect = DriverManager
-	          .getConnection("jdbc:mysql://10.10.1.214/cclinik?"
+	          .getConnection("jdbc:mysql://10.10.1.129/cclinik?"
 	              + "user=superadmin&password=root@admin1");
 
 	      // Statements allow to issue SQL queries to the database

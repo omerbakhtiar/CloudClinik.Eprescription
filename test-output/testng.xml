@@ -3,14 +3,14 @@
 
 <suite name="Suite1">
 
-	<test name="exampletest1">
+	<test name="exampletest1" parallel="false">
 		<classes>
-			<!-- <class name="test.AppointmentTest" /> -->
-			<class name="testcasses_eprescription.ManualOrder" />
-			<!-- <class name="testcasses_eprescription.VerifyData" /> -->
-			<!-- <class name="testcasses_eprescription.FavoriteOrder" /> -->
-			<!-- <class name="testcasses_eprescription.medicalCertificate" /> -->
-
+			<class name="test.LoginTest" />
+			<class name="appointment_test.OneViw">
+				<methods>
+					<include name="OneviewPayment" />
+				</methods>
+			</class>
 		</classes>
 	</test>
 

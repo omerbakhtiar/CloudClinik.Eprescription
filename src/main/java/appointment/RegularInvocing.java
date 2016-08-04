@@ -3,6 +3,7 @@ package appointment;
 import java.util.ArrayList;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -30,7 +31,7 @@ public class RegularInvocing {
 	}
 
 	public boolean verifyName(String name) {
-		
+
 		if (driver
 				.findElement(
 						By.id("_AppointmentCalender_WAR_CloudClinikportlet_:patientBillingForm:Name"))
@@ -159,6 +160,79 @@ public class RegularInvocing {
 		driver.findElement(
 				By.id("_AppointmentCalender_WAR_CloudClinikportlet_:patientBillingForm:balanceAmount"))
 				.click();
+	}
+
+	public void clickOKAlreadyBilled() {
+		driver.findElement(
+				By.cssSelector("button[id^='_AppointmentCalender_WAR_CloudClinikportlet_:duplicateBillingConfirmationForm:j_idt']"))
+				.click();
+	}
+
+	public void insertCardRefNumber(String data) {
+		driver.findElement(
+				By.id("_AppointmentCalender_WAR_CloudClinikportlet_:patientBillingForm:CardRefNo"))
+				.sendKeys(data);
+	}
+
+	public void clickCardType() {
+		divs = (ArrayList<WebElement>) driver
+				.findElement(
+						By.id("_AppointmentCalender_WAR_CloudClinikportlet_:patientBillingForm:CardType"))
+				.findElements(By.tagName("div"));
+
+		divs.get(2).findElement(By.tagName("span")).click();
+	}
+
+	public void selectCardType(String data) {
+		WebElement ele = driver
+				.findElement(
+						By.id("_AppointmentCalender_WAR_CloudClinikportlet_:patientBillingForm:CardType_panel"))
+				.findElement(By.tagName("div")).findElement(By.tagName("ul"));
+
+		li = (ArrayList<WebElement>) ele.findElements(By.tagName("li"));
+
+		for (int i = 0; i < li.size(); i++) {
+
+			if (li.get(i).getText().contains(data)) {
+				li.get(i).click();
+				break;
+
+			} else {
+				System.out.println("not found");
+
+			}
+
+		}
+
+	}
+
+	public void insertCreditCardPayment(String data)
+			throws InterruptedException {
+		WebElement ele = driver
+				.findElement(By
+						.id("_AppointmentCalender_WAR_CloudClinikportlet_:patientBillingForm:CreditPayment"));
+		  
+		   JavascriptExecutor jse = (JavascriptExecutor) driver;
+		    jse.executeScript("arguments[0].value='';", ele);
+		    
+		    Thread.sleep(1000);
+		    
+		    jse.executeScript("arguments[0].value='280'",ele);
+
+	}
+
+	public void insertCash(String data) throws InterruptedException {
+		WebElement ele = driver
+				.findElement(By
+						.id("_AppointmentCalender_WAR_CloudClinikportlet_:patientBillingForm:AmountCollected"));
+		
+		 JavascriptExecutor jse = (JavascriptExecutor) driver;
+		    jse.executeScript("arguments[0].value='';", ele);
+		    
+		    Thread.sleep(1000);
+		    
+		    jse.executeScript("arguments[0].value='200'",ele);
+		
 	}
 
 }

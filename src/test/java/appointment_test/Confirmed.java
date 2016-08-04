@@ -40,21 +40,21 @@ public class Confirmed {
 
 	}
 	
-/*	@Test(priority=2)
+	@Test(priority=2)
 	public void checkConfirmed() throws InterruptedException{
-		app.clickDisabledBookApp(0);
+		app.clickDisabledBookApp(0,10);
 		Thread.sleep(7000);
 		ele=app.BookedMen(0);
 		Thread.sleep(10000);
 		//app.clickOnConfirmed(0);
 		Thread.sleep(1000);
 		Assert.assertTrue(app.checkElementState(ele,0));
-		Assert.assertTrue(app.checkDetailedInvoicing(ele));
+	//	Assert.assertTrue(app.checkDetailedInvoicing(ele));
 	}
-	*/
-/*	@Test(priority=3)
+	
+	@Test(priority=3)
 	public void checkInClinick() throws InterruptedException{
-		app.clickDisabledBookApp(1);
+		app.clickDisabledBookApp(1,10);
 		Thread.sleep(7000);
 		ele=app.BookedMen(1);
 		Thread.sleep(4000);
@@ -69,10 +69,10 @@ public class Confirmed {
 		Assert.assertTrue(app.checkElementState(ele,14));
 		Assert.assertTrue(app.checkElementState(ele,16));
 	}
-	*/
-/*	@Test(priority=4)
+	
+	@Test(priority=4)
 	public void checkInArrived() throws InterruptedException{
-		app.clickDisabledBookApp(0);
+		app.clickDisabledBookApp(0,10);
 		Thread.sleep(7000);
 		ele=app.BookedMen(0);
 		Thread.sleep(4000);
@@ -82,7 +82,7 @@ public class Confirmed {
 		Assert.assertTrue(app.checkElementState(ele,5));
 		Assert.assertTrue(app.checkElementState(ele,9));
 		Assert.assertTrue(app.checkElementState(ele,10));
-	}*/
+	}
 	
 	
 	@Test(priority=5)

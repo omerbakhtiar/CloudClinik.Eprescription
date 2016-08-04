@@ -90,7 +90,7 @@ public class Urgent {
 		@Test(priority=5)
 		public void checkDisabled() throws InterruptedException{
 			Thread.sleep(5000);
-			app.clickDisabledBookApp(0);
+			app.clickDisabledBookApp(0,10);
 			Thread.sleep(9000);
 			ele=app.BookedMen(0);
 			Thread.sleep(1000);
